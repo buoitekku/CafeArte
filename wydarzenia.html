@@ -97,11 +97,11 @@
           <li><span class="dot dot--taken"></span> zajęte</li>
         </ul>
 
-        <fieldset class="seat-list" id="seat-list">
-          <legend>Wybór miejsc z listy</legend>
-          <p class="booking-note">Możesz też zaznaczyć miejsca z listy zamiast klikać plan sali - lista jest zsynchronizowana z mapą.</p>
-          <div class="seat-list__grid" id="seat-list-grid"></div>
-        </fieldset>
+        <details class="seat-list" id="seat-list">
+          <summary>Wolisz wybrać miejsca z listy?</summary>
+          <p class="booking-note">Lista jest zsynchronizowana z planem sali - możesz wybierać dowolnym sposobem.</p>
+          <div id="seat-list-grid"></div>
+        </details>
 
         <form class="booking-form" id="booking-form">
           <div class="booking-summary" id="booking-summary" aria-live="polite">Nie wybrano jeszcze żadnego miejsca.</div>

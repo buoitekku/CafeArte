@@ -547,40 +547,117 @@ main:focus {
 
 .seat-list {
   margin: 1.25rem 0 0;
-  padding: 1rem 1.25rem 1.25rem;
+  padding: 0;
   border: 1px dashed var(--line);
   border-radius: var(--radius-sm);
 }
 
-.seat-list legend {
-  font-weight: 600;
-  padding: 0 0.4rem;
-}
-
-.seat-list__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
-  gap: 0.4rem 1rem;
-}
-
-.seat-list__item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.95rem;
-  padding: 0.3rem 0.2rem;
+.seat-list summary {
   cursor: pointer;
+  font-weight: 600;
+  padding: 0.9rem 1.25rem;
 }
 
-.seat-list__item input {
-  width: 1.25rem;
-  height: 1.25rem;
-  accent-color: var(--terra-dark);
+.seat-list summary:focus-visible {
+  outline: 3px solid var(--terra-dark);
+  outline-offset: -3px;
+  border-radius: var(--radius-sm);
 }
 
-.seat-list__item:has(input:disabled) {
-  color: #8a7c6c;
+.seat-list > .booking-note,
+.seat-list > div {
+  padding: 0 1.25rem;
+}
+
+.seat-list > div:last-child { padding-bottom: 1.25rem; }
+
+.seat-list__group {
+  margin: 0 0 1rem;
+  padding: 0;
+  border: 0;
+}
+
+.seat-list__group legend {
+  float: left;
+  width: 9.5rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brown);
+  padding: 0.7rem 0;
+}
+
+.seat-list__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-left: 10.5rem;
+}
+
+.seat-pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.4rem 0.9rem;
+  border: 2px solid var(--brown);
+  border-radius: 999px;
+  background: var(--cream-2);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.seat-pill input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.seat-pill:hover { background: var(--paint-yellow); }
+
+.seat-pill:focus-within {
+  outline: 3px solid var(--terra-dark);
+  outline-offset: 2px;
+}
+
+.seat-pill--selected {
+  background: var(--terra-dark);
+  border-color: var(--terra-darker);
+  color: #fff;
+}
+
+.seat-pill--selected:hover { background: var(--terra-darker); }
+
+.seat-pill--taken {
+  background: #e2dbd0;
+  border-color: #a99c8a;
+  color: #6e6256;
   cursor: not-allowed;
+}
+
+.seat-pill--taken:hover { background: #e2dbd0; }
+
+.seat-pill--taken .seat-pill__text { text-decoration: line-through; }
+
+.seat-pill__taken-note {
+  display: none;
+  font-size: 0.78rem;
+}
+
+.seat-pill--taken .seat-pill__taken-note { display: inline; }
+
+@media (max-width: 719.98px) {
+  .seat-list__group legend { float: none; width: auto; padding-bottom: 0.4rem; }
+  .seat-list__pills { margin-left: 0; }
 }
 
 /* ---------- Fallback mailto (kopiowanie wiadomości) ---------- */
