@@ -13,6 +13,8 @@
 </head>
 <body>
 
+<a class="skip-link" href="#main">Przejdź do treści</a>
+
 <header class="site-header">
   <div class="site-header__inner">
     <a class="logo" href="index.html" aria-label="Art Café Wypij wymaluj - strona główna">
@@ -45,7 +47,7 @@
   </div>
 </header>
 
-<main>
+<main id="main" tabindex="-1">
 
   <section class="page-hero">
     <div class="container">
@@ -73,6 +75,14 @@
       <h2>Wybierz miejsce na planie sali</h2>
       <p class="lead">Kliknij wolne krzesło, żeby je zaznaczyć. Możesz wybrać kilka miejsc obok siebie dla swojej ekipy.</p>
 
+      <noscript>
+        <p class="card" style="margin-bottom:1.5rem">
+          Rezerwacja online wymaga włączonego JavaScriptu. Zarezerwujesz miejsce
+          także telefonicznie: <a href="tel:+48123456789">+48 123 456 789</a>
+          lub mailowo: <a href="mailto:rezerwacje@wypijwymaluj.pl">rezerwacje@wypijwymaluj.pl</a>.
+        </p>
+      </noscript>
+
       <div class="seatmap-wrap">
         <div class="seatmap-toolbar">
           <label for="event-select">Wydarzenie:</label>
@@ -87,8 +97,14 @@
           <li><span class="dot dot--taken"></span> zajęte</li>
         </ul>
 
+        <fieldset class="seat-list" id="seat-list">
+          <legend>Wybór miejsc z listy</legend>
+          <p class="booking-note">Możesz też zaznaczyć miejsca z listy zamiast klikać plan sali - lista jest zsynchronizowana z mapą.</p>
+          <div class="seat-list__grid" id="seat-list-grid"></div>
+        </fieldset>
+
         <form class="booking-form" id="booking-form">
-          <div class="booking-summary" id="booking-summary">Nie wybrano jeszcze żadnego miejsca.</div>
+          <div class="booking-summary" id="booking-summary" aria-live="polite">Nie wybrano jeszcze żadnego miejsca.</div>
           <div class="field">
             <label for="booking-name">Imię i nazwisko</label>
             <input id="booking-name" name="name" type="text" required autocomplete="name" placeholder="np. Anna Kowalska">
@@ -104,6 +120,18 @@
             Wolisz telefon? Zadzwoń: <a href="tel:+48123456789">+48 123 456 789</a>.
           </p>
         </form>
+
+        <div class="mail-fallback" id="mail-fallback" hidden>
+          <h3>Treść Twojej wiadomości</h3>
+          <p>
+            Jeśli program pocztowy się nie otworzył, skopiuj poniższą wiadomość
+            i wyślij ją na adres
+            <a href="mailto:rezerwacje@wypijwymaluj.pl">rezerwacje@wypijwymaluj.pl</a>.
+          </p>
+          <pre class="mail-fallback__text" id="mail-fallback-text"></pre>
+          <button type="button" class="btn btn--ghost" id="copy-mail">Skopiuj wiadomość</button>
+          <span class="mail-fallback__status" id="copy-status" role="status"></span>
+        </div>
       </div>
     </div>
   </section>
