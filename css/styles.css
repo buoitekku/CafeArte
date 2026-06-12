@@ -671,6 +671,9 @@ main:focus {
 
 .mail-fallback h3 { margin-top: 0; }
 
+/* Fokus programowy po submit - bez widocznego outline */
+.mail-fallback:focus { outline: none; }
+
 .mail-fallback__text {
   background: var(--paper);
   border: 1px solid var(--line);

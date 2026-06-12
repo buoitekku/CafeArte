@@ -232,6 +232,9 @@ function updateUI() {
     const cb = document.getElementById(`seat-cb-${s.id}`);
     cb.checked = isSelected;
     cb.disabled = isTaken;
+    cb.setAttribute("aria-label", isTaken
+      ? `Miejsce ${s.id}, ${seatArea(s)} - zajęte`
+      : `Miejsce ${s.id}, ${seatArea(s)}`);
 
     const pill = seatListGridEl.querySelector(`[data-seat-pill="${s.id}"]`);
     pill.classList.toggle("seat-pill--selected", isSelected);
@@ -309,6 +312,8 @@ formEl.addEventListener("submit", (e) => {
   fallbackTextEl.textContent = `Do: ${BOOKING_EMAIL}\nTemat: ${subject}\n\n${body}`;
   copyStatusEl.textContent = "";
   fallbackEl.hidden = false;
+  fallbackEl.focus({ preventScroll: true });
+  scrollToEl(fallbackEl);
 
   window.location.href = `mailto:${BOOKING_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 });
