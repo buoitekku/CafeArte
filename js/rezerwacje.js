@@ -8,7 +8,7 @@ const EVENTS = [
   {
     id: "kubki",
     title: "Wieczór malowania kubków",
-    date: "pt 26.06.2026, 18:00–20:30",
+    date: "pt 26.06.2026, 18:00-20:30",
     price: "95 zł / os.",
     desc: "Klasyk na początek: kubek, ciepłe kolory i prowadząca, która pokaże trzy proste techniki zdobienia.",
     taken: ["T2-1", "T2-2", "W3", "B2"],
@@ -16,7 +16,7 @@ const EVENTS = [
   {
     id: "talerze",
     title: "Talerze w stylu botanicznym",
-    date: "sob 04.07.2026, 11:00–13:30",
+    date: "sob 04.07.2026, 11:00-13:30",
     price: "120 zł / os.",
     desc: "Liście, zioła i kwiaty na dużych talerzach. Pracujemy z szablonami i farbami podszkliwnymi.",
     taken: ["W1", "W2", "W4", "T3-2"],
@@ -24,7 +24,7 @@ const EVENTS = [
   {
     id: "rodzinna",
     title: "Rodzinna sobota z ceramiką",
-    date: "sob 11.07.2026, 10:00–12:00",
+    date: "sob 11.07.2026, 10:00-12:00",
     price: "70 zł / os. (dziecko 50 zł)",
     desc: "Malujemy figurki zwierząt całą rodziną. Fartuszki, zmywalne farby i kakao dla młodszych artystów.",
     taken: ["T1-1", "T1-2", "T4-1"],
@@ -32,7 +32,7 @@ const EVENTS = [
   {
     id: "panienski",
     title: "Wieczór panieński: wazon i prosecco bezalkoholowe",
-    date: "pt 17.07.2026, 19:00–22:00",
+    date: "pt 17.07.2026, 19:00-22:00",
     price: "150 zł / os.",
     desc: "Sala tylko dla Was po 19:00, duże wazony, złote akcenty i playlist do wyboru przez Pannę Młodą.",
     taken: ["B1", "B2", "B3", "B4"],
