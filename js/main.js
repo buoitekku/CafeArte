@@ -3,12 +3,23 @@
 const navToggle = document.querySelector(".nav-toggle");
 const siteNav = document.querySelector(".site-nav");
 
+function setNavOpen(open) {
+  siteNav.classList.toggle("is-open", open);
+  document.body.classList.toggle("nav-open", open);
+  navToggle.setAttribute("aria-expanded", String(open));
+  navToggle.setAttribute("aria-label", open ? "Zamknij menu" : "Otwórz menu");
+}
+
 if (navToggle && siteNav) {
   navToggle.addEventListener("click", () => {
-    const open = siteNav.classList.toggle("is-open");
-    document.body.classList.toggle("nav-open", open);
-    navToggle.setAttribute("aria-expanded", String(open));
-    navToggle.setAttribute("aria-label", open ? "Zamknij menu" : "Otwórz menu");
+    setNavOpen(!siteNav.classList.contains("is-open"));
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && siteNav.classList.contains("is-open")) {
+      setNavOpen(false);
+      navToggle.focus();
+    }
   });
 }
 
