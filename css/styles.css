@@ -13,6 +13,7 @@
   --terra-dark: #9d4e2e;
   --terra-darker: #813f24;
   --paint-blue: #5b7b8c;
+  --paint-blue-dark: #4a6575;
   --paint-sage: #7c8c6f;
   --paint-yellow: #d9a441;
   --line: #e3d7c3;
@@ -422,7 +423,7 @@ main:focus {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--paint-blue);
+  color: var(--paint-blue-dark);
 }
 
 .event-card__meta {
@@ -467,6 +468,9 @@ main:focus {
 }
 
 .seatmap svg { width: 100%; height: auto; }
+
+/* Notka o przewijaniu mapy - widoczna tylko na mobile */
+.seatmap-scroll-note { display: none; }
 
 .seat {
   cursor: pointer;
@@ -598,10 +602,11 @@ main:focus {
 .seat-pill {
   position: relative;
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
-  min-width: 44px;
+  gap: 0.1rem;
+  min-width: 4.5rem;
   min-height: 44px;
   padding: 0.4rem 0.9rem;
   border: 2px solid var(--brown);
@@ -650,7 +655,8 @@ main:focus {
 
 .seat-pill__taken-note {
   display: none;
-  font-size: 0.78rem;
+  font-size: 0.7rem;
+  line-height: 1.1;
 }
 
 .seat-pill--taken .seat-pill__taken-note { display: inline; }
@@ -910,6 +916,53 @@ main:focus {
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 0.5rem;
+}
+
+/* ---------- Poprawki mobile ---------- */
+
+@media (max-width: 719.98px) {
+  /* Sociale jako okrągłe przyciski z samą ikoną */
+  .socials a {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .socials a svg { width: 22px; height: 22px; }
+
+  /* Nazwa serwisu ukryta tylko wizualnie - czytniki ekranu nadal ją czytają */
+  .socials__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  /* Ticker jako pionowa lista haseł */
+  .ticker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .ticker .dotsep { display: none; }
+
+  /* Mapa sali przewijana w poziomie, bez blokowania przewijania strony */
+  .seatmap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+
+  .seatmap svg { min-width: 560px; }
+
+  .seatmap-scroll-note { display: block; }
 }
 
 /* ---------- Animacja wejścia ---------- */
