@@ -1,4 +1,4 @@
-/* Wydarzenia + wizualna rezerwacja miejsc (strona statyczna — bez backendu).
+/* Wydarzenia + wizualna rezerwacja miejsc (strona statyczna - bez backendu).
    Zajętość miejsc dla każdego wydarzenia aktualizuje się ręcznie w polu `taken`.
    Wysłanie formularza otwiera klienta poczty z gotową wiadomością (mailto:). */
 
@@ -104,7 +104,7 @@ function renderSeatmap() {
     return `
       <circle class="${cls}" data-seat="${s.id}" cx="${s.x}" cy="${s.y}" r="17"
         role="button" tabindex="${isTaken ? -1 : 0}"
-        aria-label="Miejsce ${s.id}${isTaken ? " — zajęte" : ""}"></circle>
+        aria-label="Miejsce ${s.id}${isTaken ? " - zajęte" : ""}"></circle>
       <text class="seat-label" x="${s.x}" y="${s.y + 4}">${s.id}</text>`;
   }).join("");
 
@@ -177,7 +177,7 @@ function setEvent(id) {
 
 function renderEventSelect() {
   selectEl.innerHTML = EVENTS.map(
-    (ev) => `<option value="${ev.id}">${ev.title} — ${ev.date}</option>`
+    (ev) => `<option value="${ev.id}">${ev.title} - ${ev.date}</option>`
   ).join("");
   selectEl.addEventListener("change", () => setEvent(selectEl.value));
 }
