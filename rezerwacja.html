@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Wydarzenia i rezerwacje - Art Café „Wypij wymaluj”</title>
-  <meta name="description" content="Warsztaty i wydarzenia w Art Café Wypij wymaluj. Wybierz wydarzenie i zarezerwuj konkretne miejsce na planie sali.">
+  <title>Rezerwacja - Art Café „Wypij wymaluj”</title>
+  <meta name="description" content="Zarezerwuj stolik w Art Café Wypij wymaluj. Wybierz dogodny termin i swój ulubiony stolik na planie sali.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
 <body>
 
@@ -18,14 +18,7 @@
 <header class="site-header">
   <div class="site-header__inner">
     <a class="logo" href="index.html" aria-label="Art Café Wypij wymaluj - strona główna">
-      <svg width="42" height="42" viewBox="0 0 48 48" aria-hidden="true">
-        <path d="M8 19h26v9a13 13 0 0 1-26 0z" fill="#c0653f"/>
-        <path d="M34 21h4.5a5.5 5.5 0 0 1 0 11H33" fill="none" stroke="#c0653f" stroke-width="3"/>
-        <path d="M14 24c4 3 12 3 18 0v4c-6 3-14 3-18 0z" fill="#faf5ec" opacity="0.5"/>
-        <path d="M38 5 27 16l-2.5 7 7-2.5L42.5 9.5z" fill="#5b7b8c"/>
-        <circle cx="12" cy="10" r="2.4" fill="#d9a441"/>
-        <circle cx="20" cy="7" r="1.8" fill="#7c8c6f"/>
-      </svg>
+      <img class="logo__img" src="assets/logo.png" width="468" height="607" alt="" aria-hidden="true">
       <span class="logo__text">
         <span class="logo__name">Art Café</span>
         <span class="logo__tag">wypij wymaluj</span>
@@ -36,10 +29,11 @@
     </button>
     <nav class="site-nav" id="site-nav" aria-label="Nawigacja główna">
       <ul>
-        <li><a href="index.html">Główna</a></li>
+        <li><a href="index.html">Strona główna</a></li>
+        <li><a href="jak-to-dziala.html">Jak to działa</a></li>
+        <li><a href="rezerwacja.html" aria-current="page">Rezerwacja</a></li>
         <li><a href="menu.html">Menu</a></li>
-        <li><a href="ceramika.html">Ceramika</a></li>
-        <li><a href="wydarzenia.html" aria-current="page">Wydarzenia</a></li>
+        <li><a href="oferta.html">Oferta</a></li>
         <li><a href="faq.html">FAQ</a></li>
         <li><a href="kontakt.html">Kontakt</a></li>
       </ul>
@@ -51,66 +45,63 @@
 
   <section class="page-hero">
     <div class="container">
-      <span class="section-label">Wydarzenia</span>
-      <h1>Warsztaty i wieczory tematyczne</h1>
+      <span class="section-label">Rezerwacja</span>
+      <h1>Zarezerwuj stolik</h1>
       <p class="lead">
-        Raz w tygodniu malujemy razem - z prowadzącym, motywem przewodnim i kawą bez dna.
-        Wybierz wydarzenie, a potem zaznacz na planie sali miejsce, przy którym chcesz usiąść.
+        Wybierz dogodny termin i swój ulubiony stolik na planie sali.
+        Rezerwacja potwierdzana jest przez naszą obsługę.
       </p>
-    </div>
-  </section>
-
-  <section class="section section--tight">
-    <div class="container">
-      <h2>Najbliższe terminy</h2>
-      <div class="grid grid--3" id="event-list" style="margin-top:1.5rem">
-        <!-- karty wydarzeń generuje js/rezerwacje.js -->
-      </div>
     </div>
   </section>
 
   <section class="section section--tight" id="rezerwacja">
     <div class="container">
-      <span class="section-label">Rezerwacja miejsc</span>
-      <h2>Wybierz miejsce na planie sali</h2>
-      <p class="lead">Kliknij wolne krzesło, żeby je zaznaczyć. Możesz wybrać kilka miejsc obok siebie dla swojej ekipy.</p>
+      <span class="section-label">Plan sali</span>
+      <h2>Wybierz stolik i termin</h2>
+      <p class="lead">Kliknij stolik na planie sali, żeby go zaznaczyć. Dla większej grupy możesz wybrać kilka stolików.</p>
 
       <noscript>
         <p class="card" style="margin-bottom:1.5rem">
-          Rezerwacja online wymaga włączonego JavaScriptu. Zarezerwujesz miejsce
+          Rezerwacja online wymaga włączonego JavaScriptu. Zarezerwujesz stolik
           także telefonicznie: <a href="tel:+48123456789">+48 123 456 789</a>
           lub mailowo: <a href="mailto:rezerwacje@wypijwymaluj.pl">rezerwacje@wypijwymaluj.pl</a>.
         </p>
       </noscript>
 
       <div class="seatmap-wrap">
-        <div class="seatmap-toolbar">
-          <label for="event-select">Wydarzenie:</label>
-          <select id="event-select"></select>
-        </div>
-
         <p class="seatmap-scroll-note booking-note">Przesuń mapę w bok, żeby zobaczyć całość.</p>
-        <div class="seatmap" id="seatmap" aria-label="Plan sali z miejscami do wyboru"></div>
+        <div class="seatmap" id="seatmap" aria-label="Plan sali ze stolikami do wyboru"></div>
 
         <ul class="legend">
-          <li><span class="dot"></span> wolne</li>
-          <li><span class="dot dot--selected"></span> wybrane</li>
-          <li><span class="dot dot--taken"></span> zajęte</li>
+          <li><span class="dot"></span> wolny</li>
+          <li><span class="dot dot--selected"></span> wybrany</li>
         </ul>
 
         <details class="seat-list" id="seat-list">
-          <summary>Wolisz wybrać miejsca z listy?</summary>
+          <summary>Wolisz wybrać stolik z listy?</summary>
           <p class="booking-note">Lista jest zsynchronizowana z planem sali - możesz wybierać dowolnym sposobem.</p>
           <div id="seat-list-grid"></div>
         </details>
 
         <form class="booking-form" id="booking-form">
-          <div class="booking-summary" id="booking-summary" aria-live="polite">Nie wybrano jeszcze żadnego miejsca.</div>
+          <div class="booking-summary" id="booking-summary" aria-live="polite">Nie wybrano jeszcze żadnego stolika.</div>
+          <div class="field">
+            <label for="booking-date">Data</label>
+            <input id="booking-date" name="date" type="date" required>
+          </div>
+          <div class="field">
+            <label for="booking-time">Godzina</label>
+            <input id="booking-time" name="time" type="time" required>
+          </div>
+          <div class="field">
+            <label for="booking-people">Liczba osób</label>
+            <input id="booking-people" name="people" type="number" min="1" max="35" inputmode="numeric" placeholder="np. 4">
+          </div>
           <div class="field">
             <label for="booking-name">Imię i nazwisko</label>
             <input id="booking-name" name="name" type="text" required autocomplete="name" placeholder="np. Anna Kowalska">
           </div>
-          <div class="field">
+          <div class="field field--wide">
             <label for="booking-phone">Telefon lub e-mail</label>
             <input id="booking-phone" name="contact" type="text" required placeholder="np. 600 100 200">
           </div>
@@ -134,18 +125,11 @@
           <span class="mail-fallback__status" id="copy-status" role="status"></span>
         </div>
       </div>
-    </div>
-  </section>
 
-  <section class="section">
-    <div class="container">
-      <div class="card reveal">
-        <h3>Wydarzenie prywatne?</h3>
-        <p style="margin-bottom:0">
-          Urodziny, wieczór panieński, integracja firmowa - zamykamy salę na wyłączność dla grup od 10 osób.
-          Napisz na <a href="mailto:rezerwacje@wypijwymaluj.pl">rezerwacje@wypijwymaluj.pl</a>, a przygotujemy ofertę.
-        </p>
-      </div>
+      <p class="booking-note" style="margin-top:1.5rem">
+        Planujesz wydarzenie dla grupy (urodziny, wieczór panieński, spotkanie firmowe)?
+        Zajrzyj do zakładki <a href="oferta.html">Oferta</a> - przygotujemy salę na wyłączność.
+      </p>
     </div>
   </section>
 
@@ -161,9 +145,10 @@
       <div>
         <h3>Na skróty</h3>
         <ul>
+          <li><a href="jak-to-dziala.html">Jak to działa</a></li>
+          <li><a href="rezerwacja.html">Rezerwacja</a></li>
           <li><a href="menu.html">Menu</a></li>
-          <li><a href="ceramika.html">Ceramika</a></li>
-          <li><a href="wydarzenia.html">Wydarzenia</a></li>
+          <li><a href="oferta.html">Oferta</a></li>
           <li><a href="faq.html">FAQ</a></li>
           <li><a href="kontakt.html">Kontakt</a></li>
         </ul>
@@ -179,7 +164,7 @@
     </div>
     <div class="site-footer__bottom">
       <span>© <span data-year></span> Art Café „Wypij wymaluj”</span>
-      <span>wt-nd 10:00-21:00 · pon nieczynne</span>
+      <span>pon nieczynne · wt-czw 12-20 · pt 12-21 · sob 11-21 · nd 11-20</span>
     </div>
   </div>
 </footer>
