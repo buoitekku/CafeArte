@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Art Café „Wypij wymaluj" — koncept II · pracownia i karta</title>
+<meta name="description" content="Druga odsłona konceptu Art Café Wypij wymaluj — pracownia, karta sezonowa i wydarzenia, na oficjalnym design systemie marki.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<style>
+/* ====== Tokeny z design systemu „Wypij Wymaluj" ====== */
+:root{
+  --cream:#fdf6ec; --cream-2:#f3e9dd; --paper:#fffdf8; --sand:#dab88b; --sand-soft:#efe4d2;
+  --ink:#2b2018; --ink-700:#4a3b2e; --ink-muted:#6b5d4d; --ink-faint:#978675;
+  --blue:#b7cadb; --blue-soft:#d4e0ea; --blue-700:#41617a;
+  --terra:#c98a5c; --terra-700:#a05a2e; --terra-800:#834723;
+  --line:#e7d8c4; --line-strong:#d8c4a9;
+  --shadow:0 10px 30px rgba(43,32,24,.08); --shadow-lg:0 18px 48px rgba(43,32,24,.12);
+  --focus:0 0 0 3px rgba(160,90,46,.35);
+  --r-sm:12px; --r:18px; --r-lg:26px; --pill:999px;
+  --display:"Fraunces",Georgia,serif; --body:"Work Sans","Segoe UI",system-ui,sans-serif;
+  --ease:cubic-bezier(.22,.61,.36,1); --container:1120px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink-700);font-family:var(--body);
+  font-size:clamp(15px,1.05vw,17px);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.5;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E")}
+img,svg{display:block;max-width:100%}
+a{color:var(--blue-700);text-underline-offset:2px}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.13;letter-spacing:-.01em;color:var(--ink);margin:0;text-wrap:balance}
+.wrap{max-width:var(--container);margin:0 auto;padding:0 28px}
+:focus-visible{outline:none;box-shadow:var(--focus);border-radius:6px}
+
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.76rem;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--blue-700)}
+.eyebrow::before{content:"";width:34px;height:1.5px;background:var(--blue-700)}
+.lead{font-size:1.18rem;line-height:1.4;color:var(--ink-muted);max-width:42rem}
+
+.btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:.96rem;text-decoration:none;
+  padding:14px 26px;border-radius:var(--pill);border:1.5px solid var(--terra-700);transition:.22s var(--ease)}
+.btn--solid{background:var(--terra-700);color:#fff}
+.btn--solid:hover{background:var(--terra-800);border-color:var(--terra-800);transform:translateY(-1px)}
+.btn--ghost{background:transparent;color:var(--terra-700);border-color:var(--ink)}
+.btn--ghost:hover{background:var(--terra-700);border-color:var(--terra-700);color:#fff}
+.btn:active{transform:translateY(0) scale(.985)}
+
+.ribbon{position:fixed;top:18px;right:-46px;z-index:60;transform:rotate(45deg);background:var(--terra-700);color:#fff;
+  font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;padding:7px 60px;box-shadow:var(--shadow)}
+
+/* ====== nagłówek / przełącznik konceptu ====== */
+.top{position:sticky;top:0;z-index:40;background:rgba(253,246,236,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top__in{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:var(--container);margin:0 auto;padding:12px 28px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--ink)}
+.brand img{height:42px;width:auto}
+.brand b{font-family:var(--display);font-weight:600;font-size:1.08rem;line-height:1}
+.brand small{display:block;font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;color:var(--blue-700);margin-top:3px}
+.switch{display:flex;gap:6px;align-items:center}
+.switch a{font-size:.82rem;font-weight:500;text-decoration:none;color:var(--ink-700);padding:8px 14px;border-radius:var(--pill);transition:.2s}
+.switch a:hover{background:var(--cream-2)}
+.switch a[aria-current]{background:var(--ink);color:var(--cream)}
+@media(max-width:720px){.switch a.hide{display:none}}
+
+/* ====== hero ====== */
+.hero{position:relative;padding:74px 0 64px}
+.hero__grid{display:grid;grid-template-columns:1.04fr .96fr;gap:34px;align-items:center}
+h1.title{font-size:clamp(2.8rem,6.6vw,5.4rem);line-height:.96;letter-spacing:-.025em}
+h1.title .it{font-style:italic;font-weight:500}
+.hero .lead{margin-top:26px}
+.hero__cta{display:flex;flex-wrap:wrap;gap:13px;margin-top:30px}
+.hero__art{position:relative}
+.hero__art svg{width:100%;height:auto}
+.chip{position:absolute;top:5%;right:1%;transform:rotate(7deg);background:var(--paper);border:1.5px solid var(--ink);
+  border-radius:14px;padding:8px 13px;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;box-shadow:5px 5px 0 var(--blue)}
+
+/* reveal */
+.r{opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.r.in{opacity:1;transform:none}
+.hero .r{animation:rise .8s var(--ease) both}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.d1{animation-delay:.05s}.d2{animation-delay:.16s}.d3{animation-delay:.27s}.d4{animation-delay:.38s}
+
+/* marquee */
+.marquee{border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);background:var(--blue);overflow:hidden;padding:15px 0}
+.marquee__row{display:flex;width:max-content;white-space:nowrap;animation:scroll 28s linear infinite}
+.marquee span{font-family:var(--display);font-style:italic;font-weight:500;font-size:clamp(1.4rem,3.6vw,2.3rem);color:var(--ink);padding:0 22px}
+.marquee span::after{content:"·";font-style:normal;margin-left:44px;color:var(--paper)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* sekcje */
+.section{padding:84px 0}
+.section--sunk{background:var(--cream-2)}
+.kicker{font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-700);font-weight:600}
+.h2{font-size:clamp(2rem,4.4vw,3.2rem);line-height:1.04;letter-spacing:-.02em;margin:12px 0 0}
+.intro{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:end}
+.intro p{margin:0;color:var(--ink-muted)}
+@media(max-width:760px){.intro{grid-template-columns:1fr;gap:14px}}
+
+/* kroki */
+.steps{margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.stepc{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:28px;box-shadow:var(--shadow);transition:.3s var(--ease)}
+.stepc:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.stepc .tile{width:74px;height:74px;border-radius:16px;background:var(--cream-2);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.stepc .tile img{width:46px;height:46px}
+.stepc h3{font-size:1.3rem;margin:0 0 .35em}
+.stepc p{margin:0;color:var(--ink-muted);font-size:.96rem}
+.stepc .no{font-family:var(--display);font-style:italic;color:var(--sand);font-size:1.1rem;font-weight:600}
+
+/* karta / menu */
+.menu{margin-top:42px;display:grid;gap:40px}
+.season{display:grid;grid-template-columns:200px 1fr;gap:26px;align-items:start}
+.season__h{position:sticky;top:90px}
+.season__h h3{font-size:1.7rem;line-height:1}
+.season__h span{display:block;margin-top:8px;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-700);font-weight:600}
+.items{display:grid;grid-template-columns:repeat(2,1fr);gap:0 30px}
+.item{display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:1px solid var(--line)}
+.item img{width:42px;height:42px;flex:none}
+.item b{font-family:var(--display);font-weight:600;font-size:1.12rem;color:var(--ink)}
+@media(max-width:760px){.season{grid-template-columns:1fr;gap:12px}.season__h{position:static}.items{grid-template-columns:1fr}.steps{grid-template-columns:1fr}}
+.note{margin-top:26px;font-size:.92rem;color:var(--ink-muted)}
+
+/* oferta */
+.offers{margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.offer{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:26px;box-shadow:var(--shadow)}
+.offer h3{font-size:1.25rem;margin:0 0 .4em}
+.offer p{margin:0;color:var(--ink-muted);font-size:.95rem}
+@media(max-width:860px){.offers{grid-template-columns:1fr}}
+
+/* faq */
+.faq{margin-top:42px;display:grid;gap:12px;max-width:52rem}
+.faq details{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:center;
+  padding:18px 22px;font-family:var(--display);font-weight:600;font-size:1.12rem;color:var(--ink)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--terra-700);font-size:1.5rem;line-height:1;transition:transform .25s var(--ease)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq p{margin:0;padding:0 22px 20px;color:var(--ink-muted)}
+
+/* design system specimen */
+.spec{margin-top:44px;display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:start}
+@media(max-width:860px){.spec{grid-template-columns:1fr}}
+.sw{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.sw figure{margin:0;border:1px solid var(--ink);border-radius:var(--r-sm);overflow:hidden}
+.sw i{display:block;height:64px}
+.sw figcaption{padding:8px 11px;font-size:.7rem;letter-spacing:.06em;font-weight:600;background:var(--paper);color:var(--ink-700)}
+.specimen{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:26px;box-shadow:var(--shadow)}
+.specimen .big{font-family:var(--display);font-size:3rem;line-height:1;letter-spacing:-.02em;color:var(--ink)}
+.specimen .big em{font-style:italic;color:var(--terra-700)}
+.specimen .row{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);font-size:.9rem;color:var(--ink-muted)}
+.specimen .row b{color:var(--ink)}
+
+/* band */
+.band{position:relative;background:var(--ink);color:var(--cream);border-radius:var(--r-lg);padding:70px 8%;text-align:center;overflow:hidden}
+.band h2{color:var(--cream);font-size:clamp(2rem,5vw,3.4rem);line-height:1.04;letter-spacing:-.02em;margin:0 0 12px}
+.band p{color:#d9ccbb;max-width:34rem;margin:0 auto 28px}
+.band .btn--solid{background:var(--cream);color:var(--ink);border-color:var(--cream)}
+.band .btn--solid:hover{background:#fff;border-color:#fff;color:var(--ink)}
+.band .btn--ghost{color:var(--cream);border-color:var(--cream)}
+.band .blob{position:absolute;border-radius:50%;filter:blur(3px);opacity:.45}
+.band .b1{width:230px;height:230px;background:var(--blue);left:-66px;top:-70px}
+.band .b2{width:190px;height:190px;background:var(--sand);right:-56px;bottom:-66px}
+
+footer{padding:48px 0 64px;color:var(--ink-muted);font-size:.86rem}
+footer .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid var(--line);padding-top:24px}
+footer b{font-family:var(--display);color:var(--ink);font-weight:600;font-size:1.02rem}
+
+@media(max-width:860px){.hero__grid{grid-template-columns:1fr;gap:8px}.hero__art{order:-1;max-width:440px;margin:0 auto}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.r{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="ribbon">koncept II · od Claude</div>
+
+<header class="top">
+  <div class="top__in">
+    <a class="brand" href="index.html">
+      <img src="assets/logo.png" alt="Art Café Wypij wymaluj">
+      <span><b>Art Café</b><small>wypij wymaluj</small></span>
+    </a>
+    <nav class="switch" aria-label="Wersje konceptu">
+      <a href="koncept.html">Koncept I</a>
+      <a href="koncept-2.html" aria-current="page">Koncept II</a>
+      <a class="hide" href="index.html">Pełna strona</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div>
+        <div class="eyebrow r d1">Pracownia &amp; karta</div>
+        <h1 class="title r d2">Twoja paleta,<br><span class="it">nasza glina.</span></h1>
+        <p class="lead r d3">Druga odsłona konceptu: wchodzimy głębiej do pracowni. Wybierasz naczynie i kolory, my podajemy kawę i czuwamy nad piecem — Ty tworzysz coś, co zostaje.</p>
+        <div class="hero__cta r d4">
+          <a class="btn btn--solid" href="#karta">Zobacz kartę</a>
+          <a class="btn btn--ghost" href="koncept.html">Wróć do konceptu I</a>
+        </div>
+      </div>
+      <div class="hero__art r d3">
+        <div class="chip">paleta marki = farby</div>
+        <svg viewBox="0 0 620 560" xmlns="http://www.w3.org/2000/svg">
+          <path d="M312 60c94 0 184 56 208 150 26 92-12 192-92 244-78 50-186 46-258-6C96 392 74 296 98 208 120 128 178 78 252 62c20-3 40-2 60-2z" fill="#dab88b" opacity="0.5"/>
+          <path d="M298 44c98 0 192 60 216 156 24 94-16 196-96 246-78 48-184 44-256-8C90 384 70 286 94 198 118 116 178 56 256 44c14-2 28-2 42 0z" fill="#b7cadb"/>
+          <circle cx="118" cy="150" r="18" fill="#c98a5c"/>
+          <circle cx="498" cy="120" r="13" fill="#fffdf8" stroke="#2b2018" stroke-width="3"/>
+          <circle cx="520" cy="356" r="22" fill="none" stroke="#c79193" stroke-width="9"/>
+          <circle cx="96" cy="372" r="11" fill="#a3bd6e"/>
+          <g transform="rotate(-12 300 320)">
+            <path d="M196 322c0-66 58-112 128-112s122 44 122 100c0 30-22 44-46 44-18 0-30 10-30 28 0 24-26 44-66 44-68 0-108-46-108-104z" fill="#fffdf8" stroke="#2b2018" stroke-width="4"/>
+            <ellipse cx="300" cy="392" rx="30" ry="22" fill="none" stroke="#2b2018" stroke-width="4"/>
+            <circle cx="246" cy="288" r="15" fill="#b7cadb"/>
+            <circle cx="300" cy="270" r="15" fill="#c98a5c"/>
+            <circle cx="356" cy="286" r="15" fill="#dab88b"/>
+            <circle cx="392" cy="330" r="13" fill="#a3bd6e"/>
+            <circle cx="232" cy="344" r="12" fill="#c79193"/>
+          </g>
+          <g transform="rotate(36 430 250)">
+            <rect x="422" y="150" width="15" height="118" rx="7" fill="#fdf6ec" stroke="#2b2018" stroke-width="3"/>
+            <rect x="419" y="264" width="21" height="14" rx="3" fill="#dab88b" stroke="#2b2018" stroke-width="3"/>
+            <path d="M420 278h19l-4 36a6 6 0 0 1-11 0z" fill="#c98a5c"/>
+          </g>
+          <g transform="rotate(22 372 250)">
+            <rect x="366" y="170" width="13" height="104" rx="6" fill="#fdf6ec" stroke="#2b2018" stroke-width="3"/>
+            <rect x="363" y="270" width="19" height="13" rx="3" fill="#dab88b" stroke="#2b2018" stroke-width="3"/>
+            <path d="M364 283h17l-4 32a5 5 0 0 1-9 0z" fill="#b7cadb"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__row">
+      <span>wybierz</span><span>maluj</span><span>wypalamy</span><span>odbierasz</span>
+      <span>wybierz</span><span>maluj</span><span>wypalamy</span><span>odbierasz</span>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="r"><span class="kicker">Jak to działa</span><h2 class="h2">Trzy kroki, jedna pamiątka</h2></div>
+      <div class="steps">
+        <article class="stepc r"><div class="tile"><img src="assets/icons/cup.svg" alt=""></div><span class="no">01</span><h3>Zamów kawę</h3><p>Speciality z lokalnej palarni, klasyki i sezonowe autorskie napoje. Do tego domowe ciasta.</p></article>
+        <article class="stepc r"><div class="tile"><img src="assets/icons/palette.svg" alt=""></div><span class="no">02</span><h3>Wybierz i maluj</h3><p>Z półki bierzesz surowe naczynie, a od nas farby, pędzle i wzorniki. Pomagamy na każdym etapie.</p></article>
+        <article class="stepc r"><div class="tile"><img src="assets/icons/kiln.svg" alt=""></div><span class="no">03</span><h3>My wypalamy</h3><p>Szkliwimy i wypalamy Twoją pracę w naszym piecu. Po 7–10 dniach odbierasz gotową ceramikę.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--sunk" id="karta">
+    <div class="wrap">
+      <div class="intro r">
+        <div><span class="kicker">Karta</span><h2 class="h2">Co dziś pijesz?</h2></div>
+        <p>Oferta stała i sezonowa — bez cen, bo te ustala obsługa na miejscu. Ikony rysowane są w stylu naszego znaku: trzy sylwetki naczyń, miękkie wypełnienia, lekki kontur.</p>
+      </div>
+      <div class="menu">
+        <div class="season r">
+          <div class="season__h"><h3>Stała oferta</h3><span>cały rok</span></div>
+          <div class="items">
+            <div class="item"><img src="assets/icons/espresso.svg" alt=""><b>Espresso</b></div>
+            <div class="item"><img src="assets/icons/cappuccino.svg" alt=""><b>Cappuccino</b></div>
+            <div class="item"><img src="assets/icons/latte.svg" alt=""><b>Latte</b></div>
+            <div class="item"><img src="assets/icons/flat-white.svg" alt=""><b>Flat white</b></div>
+            <div class="item"><img src="assets/icons/espresso.svg" alt=""><b>Americano</b></div>
+            <div class="item"><img src="assets/icons/matcha.svg" alt=""><b>Matcha latte</b></div>
+            <div class="item"><img src="assets/icons/tea.svg" alt=""><b>Herbata liściasta</b></div>
+            <div class="item"><img src="assets/icons/hot-chocolate.svg" alt=""><b>Gorąca czekolada</b></div>
+          </div>
+        </div>
+        <div class="season r">
+          <div class="season__h"><h3>Lato / wiosna</h3><span>sezon ciepły</span></div>
+          <div class="items">
+            <div class="item"><img src="assets/icons/ice-latte.svg" alt=""><b>Ice latte</b></div>
+            <div class="item"><img src="assets/icons/iced.svg" alt=""><b>Ice matcha</b></div>
+            <div class="item"><img src="assets/icons/lemonade.svg" alt=""><b>Lemoniady</b></div>
+            <div class="item"><img src="assets/icons/lemonade.svg" alt=""><b>Soki świeżo wyciskane</b></div>
+            <div class="item"><img src="assets/icons/matcha.svg" alt=""><b>Matcha truskawkowa</b></div>
+            <div class="item"><img src="assets/icons/matcha.svg" alt=""><b>Matcha mango</b></div>
+          </div>
+        </div>
+        <div class="season r">
+          <div class="season__h"><h3>Jesień / zima</h3><span>sezon chłodny</span></div>
+          <div class="items">
+            <div class="item"><img src="assets/icons/tea.svg" alt=""><b>Napary korzenne</b></div>
+            <div class="item"><img src="assets/icons/latte.svg" alt=""><b>Karmelowo-cynamonowe latte</b></div>
+            <div class="item"><img src="assets/icons/latte.svg" alt=""><b>Piernikowe latte</b></div>
+            <div class="item"><img src="assets/icons/hot-chocolate.svg" alt=""><b>Gorąca czekolada</b></div>
+            <div class="item"><img src="assets/icons/tea.svg" alt=""><b>Herbata zimowa</b></div>
+          </div>
+        </div>
+      </div>
+      <p class="note">Masz alergię lub pytanie o skład? Zapytaj baristę — chętnie doradzimy. Napoje przygotujemy też na mleku roślinnym.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="r"><span class="kicker">Oferta</span><h2 class="h2">Wydarzenia, które zostają<br>w pamięci</h2></div>
+      <div class="offers">
+        <article class="offer r"><h3>Urodziny dla dzieci i dorosłych</h3><p>Połącz świętowanie z kreatywną zabawą. Każdy ozdobi wybrany przedmiot, który po wypaleniu stanie się wyjątkową pamiątką.</p></article>
+        <article class="offer r"><h3>Wieczory panieńskie</h3><p>Stwórzcie wspólnie coś wyjątkowego przed wielkim dniem — malowanie, pyszne napoje i swobodna atmosfera.</p></article>
+        <article class="offer r"><h3>Spotkania firmowe i integracyjne</h3><p>Odejdź od stołu konferencyjnego. Warsztaty ceramiczne sprzyjają integracji i współpracy zespołu.</p></article>
+        <article class="offer r"><h3>Baby shower</h3><p>Świętujcie oczekiwanie na nowego członka rodziny i stwórzcie personalizowane pamiątki.</p></article>
+        <article class="offer r"><h3>Spotkania rodzinne</h3><p>Rodzinne popołudnie czy jubileusz? Wspólne malowanie łączy pokolenia, niezależnie od wieku.</p></article>
+        <article class="offer r" style="background:var(--blue-soft);border-color:var(--blue)"><h3>Grupy do 35 osób</h3><p>Salę zamykamy na wyłączność. Napisz po indywidualną wycenę — odpisujemy do 24 h.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--sunk">
+    <div class="wrap">
+      <div class="r"><span class="kicker">FAQ</span><h2 class="h2">Zanim wpadniesz</h2></div>
+      <div class="faq">
+        <details open class="r"><summary>Czy trzeba umieć malować?</summary><p>Nie. Pokażemy techniki, damy wzorniki i pomożemy na każdym etapie. Liczy się dobra zabawa, nie talent.</p></details>
+        <details class="r"><summary>Ile kosztuje malowanie?</summary><p>Płacisz za wybrane naczynie — szkliwienie i wypał są w cenie. Kawę i ciasto zamawiasz osobno z menu.</p></details>
+        <details class="r"><summary>Kiedy odbiorę gotową pracę?</summary><p>Po 7–10 dniach od wypału. Odezwiemy się, gdy ceramika będzie gotowa do odbioru.</p></details>
+        <details class="r"><summary>Czy mogę przyjść bez rezerwacji?</summary><p>W tygodniu zwykle tak. W weekendy i dla grup lepiej zarezerwować stolik wcześniej.</p></details>
+        <details class="r"><summary>Czy organizujecie wydarzenia grupowe?</summary><p>Tak — urodziny, wieczory panieńskie, spotkania firmowe i rodzinne dla grup do 35 osób. Napisz po wycenę.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="r"><span class="kicker">Design system</span><h2 class="h2">Na czym to stoi</h2></div>
+      <div class="spec">
+        <div class="r">
+          <p class="lead" style="margin-bottom:22px">Ten koncept korzysta z oficjalnego systemu marki: cztery kolory, ciepły atrament zamiast czerni, terakota na interakcje i błękit — ulubiony kolor — jako akcent.</p>
+          <div class="sw">
+            <figure><i style="background:#fdf6ec"></i><figcaption>#FDF6EC krem</figcaption></figure>
+            <figure><i style="background:#f3e9dd"></i><figcaption>#F3E9DD beż</figcaption></figure>
+            <figure><i style="background:#b7cadb"></i><figcaption>#B7CADB błękit</figcaption></figure>
+            <figure><i style="background:#dab88b"></i><figcaption>#DAB88B piaskowy</figcaption></figure>
+            <figure><i style="background:#a05a2e"></i><figcaption>terakota / akcja</figcaption></figure>
+            <figure><i style="background:#2b2018"></i><figcaption>atrament / tekst</figcaption></figure>
+          </div>
+        </div>
+        <div class="specimen r">
+          <div class="big">Aa <em>Bb</em></div>
+          <div class="row"><b>Fraunces</b> — nagłówki, nazwa marki. Serif z optycznymi osiami, ciepły, „rzemieślniczy".</div>
+          <div class="row"><b>Work Sans</b> — treść i UI. Czysty, wysoka czytelność, interlinia 1.65.</div>
+          <div class="row"><b>Ikony line-art</b> — 18 znaków napojów i rzemiosła, stroke 2.4, trzy sylwetki naczyń.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="band r">
+        <span class="blob b1"></span><span class="blob b2"></span>
+        <h2>Wpadnij na kawę —<br>resztę wymalujesz</h2>
+        <p>Wtorek–niedziela. Rezerwacja stolika i wydarzenia grupowe do 35 osób. Pełna, działająca strona czeka obok.</p>
+        <div class="hero__cta" style="justify-content:center">
+          <a class="btn btn--solid" href="index.html">Otwórz pełną stronę</a>
+          <a class="btn btn--ghost" href="mailto:rezerwacje@wypijwymaluj.pl">Napisz do nas</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap row">
+    <b>Art Café „Wypij wymaluj"</b>
+    <span>pon nieczynne · wt–czw 12–20 · pt 12–21 · sob 11–21 · nd 11–20</span>
+    <span>Koncept II · © <span id="y"></span></span>
+  </div>
+</footer>
+
+<script>
+document.getElementById("y").textContent=new Date().getFullYear();
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll(".section .r").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
