@@ -1,28 +1,28 @@
 /* ============================================================
    Art Café „Wypij wymaluj” - wspólne style
-   Paleta: krem / espresso / terakota / błękit farby / szałwia
+   Paleta: krem #FDF6EC / beż #F3E9DD / błękit #B7CADB / piaskowy #DAB88B
    ============================================================ */
 
 :root {
-  --cream: #faf5ec;
-  --cream-2: #f1e7d8;
+  --cream: #fdf6ec;
+  --cream-2: #f3e9dd;
   --paper: #fffdf8;
-  --espresso: #2d241c;
-  --brown: #5c4a3a;
-  --terra: #c0653f;
-  --terra-dark: #9d4e2e;
-  --terra-darker: #813f24;
-  --paint-blue: #5b7b8c;
+  --espresso: #3a2f25;
+  --brown: #6b5d4d;
+  --terra: #dab88b;
+  --terra-dark: #6b4f2e;
+  --terra-darker: #523a22;
+  --paint-blue: #b7cadb;
   --paint-blue-dark: #4a6575;
-  --paint-sage: #7c8c6f;
-  --paint-yellow: #d9a441;
-  --line: #e3d7c3;
+  --paint-sage: #aebb9e;
+  --paint-yellow: #dab88b;
+  --line: #e7d8c4;
   --radius: 18px;
   --radius-sm: 12px;
-  --shadow: 0 10px 30px rgba(45, 36, 28, 0.08);
+  --shadow: 0 10px 30px rgba(58, 47, 37, 0.08);
   --container: 1120px;
-  --font-display: "Fraunces", Georgia, serif;
-  --font-body: "Work Sans", "Segoe UI", system-ui, sans-serif;
+  --font-display: “Fraunces”, Georgia, serif;
+  --font-body: “Work Sans”, “Segoe UI”, system-ui, sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -136,9 +136,15 @@ main:focus {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(250, 245, 236, 0.92);
+  background: rgba(253, 246, 236, 0.92);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--line);
+}
+
+.logo__img {
+  height: 46px;
+  width: auto;
+  display: block;
 }
 
 .site-header__inner {
@@ -909,9 +915,9 @@ main:focus {
 .site-footer__bottom {
   margin-top: 2.5rem;
   padding-top: 1.25rem;
-  border-top: 1px solid rgba(250, 245, 236, 0.18);
+  border-top: 1px solid rgba(253, 246, 236, 0.18);
   font-size: 0.85rem;
-  color: rgba(250, 245, 236, 0.7);
+  color: rgba(253, 246, 236, 0.7);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;

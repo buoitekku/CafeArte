@@ -1,88 +1,32 @@
-/* Wydarzenia + wizualna rezerwacja miejsc (strona statyczna - bez backendu).
-   Zajętość miejsc dla każdego wydarzenia aktualizuje się ręcznie w polu `taken`.
+/* Rezerwacja stolika (strona statyczna - bez backendu).
+   Gość wybiera stolik na planie sali (lub z listy) oraz termin (data, godzina).
    Wysłanie formularza otwiera klienta poczty z gotową wiadomością (mailto:),
-   a treść wiadomości pokazuje się też na stronie jako fallback do skopiowania. */
+   a treść wiadomości pokazuje się też na stronie jako fallback do skopiowania.
+   Dostępność stolików w danym terminie potwierdza obsługa - tu nic nie jest
+   oznaczane jako zajęte. */
 
 const BOOKING_EMAIL = "rezerwacje@wypijwymaluj.pl";
 
-const EVENTS = [
-  {
-    id: "kubki",
-    title: "Wieczór malowania kubków",
-    date: "pt 26.06.2026, 18:00-20:30",
-    iso: "2026-06-26T18:00",
-    price: "95 zł / os.",
-    desc: "Klasyk na początek: kubek, ciepłe kolory i prowadząca, która pokaże trzy proste techniki zdobienia.",
-    taken: ["T2-1", "T2-2", "W3", "B2"],
-  },
-  {
-    id: "talerze",
-    title: "Talerze w stylu botanicznym",
-    date: "sob 04.07.2026, 11:00-13:30",
-    iso: "2026-07-04T11:00",
-    price: "120 zł / os.",
-    desc: "Liście, zioła i kwiaty na dużych talerzach. Pracujemy z szablonami i farbami podszkliwnymi.",
-    taken: ["W1", "W2", "W4", "T3-2"],
-  },
-  {
-    id: "rodzinna",
-    title: "Rodzinna sobota z ceramiką",
-    date: "sob 11.07.2026, 10:00-12:00",
-    iso: "2026-07-11T10:00",
-    price: "70 zł / os. (dziecko 50 zł)",
-    desc: "Malujemy figurki zwierząt całą rodziną. Fartuszki, zmywalne farby i kakao dla młodszych artystów.",
-    taken: ["T1-1", "T1-2", "T4-1"],
-  },
-  {
-    id: "panienski",
-    title: "Wieczór panieński: wazon i prosecco bezalkoholowe",
-    date: "pt 17.07.2026, 19:00-22:00",
-    iso: "2026-07-17T19:00",
-    price: "150 zł / os.",
-    desc: "Sala tylko dla Was po 19:00, duże wazony, złote akcenty i playlista do wyboru przez Pannę Młodą.",
-    taken: ["B1", "B2", "B3", "B4"],
-  },
+/* Plan sali: cztery stoliki kawiarniane, stół warsztatowy i miejsca przy barze.
+   id - krótka etykieta na planie; name/desc - pełny opis (lista, aria, wiadomość). */
+const TABLES = [
+  { id: "1", name: "Stolik 1", desc: "przy oknie, do 2 osób", x: 250, y: 150 },
+  { id: "2", name: "Stolik 2", desc: "przy oknie, do 2 osób", x: 430, y: 150 },
+  { id: "3", name: "Stolik 3", desc: "do 4 osób", x: 250, y: 300 },
+  { id: "4", name: "Stolik 4", desc: "do 4 osób", x: 430, y: 300 },
+  { id: "W", name: "Stół warsztatowy", desc: "do 8 osób", x: 350, y: 460 },
+  { id: "B", name: "Bar", desc: "4 miejsca przy barze", x: 622, y: 235 },
 ];
 
-/* Plan sali: bar przy oknie, cztery stoliki kawiarniane i duży stół warsztatowy. */
-const SEAT_GROUPS = [
-  { id: "bar", label: "Bar" },
-  { id: "t1", label: "Stolik 1" },
-  { id: "t2", label: "Stolik 2" },
-  { id: "t3", label: "Stolik 3" },
-  { id: "t4", label: "Stolik 4" },
-  { id: "w", label: "Stół warsztatowy" },
-];
-
-const SEATS = [
-  { id: "B1", group: "bar", x: 130, y: 105 }, { id: "B2", group: "bar", x: 210, y: 105 },
-  { id: "B3", group: "bar", x: 290, y: 105 }, { id: "B4", group: "bar", x: 370, y: 105 },
-
-  { id: "T1-1", group: "t1", x: 600, y: 70 },  { id: "T1-2", group: "t1", x: 600, y: 170 },
-
-  { id: "T2-1", group: "t2", x: 110, y: 250 }, { id: "T2-2", group: "t2", x: 210, y: 250 },
-  { id: "T2-3", group: "t2", x: 110, y: 330 }, { id: "T2-4", group: "t2", x: 210, y: 330 },
-
-  { id: "T3-1", group: "t3", x: 350, y: 250 }, { id: "T3-2", group: "t3", x: 450, y: 250 },
-  { id: "T3-3", group: "t3", x: 350, y: 330 }, { id: "T3-4", group: "t3", x: 450, y: 330 },
-
-  { id: "T4-1", group: "t4", x: 588, y: 345 }, { id: "T4-2", group: "t4", x: 692, y: 345 },
-
-  { id: "W1", group: "w", x: 180, y: 420 }, { id: "W2", group: "w", x: 300, y: 420 }, { id: "W3", group: "w", x: 420, y: 420 },
-  { id: "W4", group: "w", x: 180, y: 545 }, { id: "W5", group: "w", x: 300, y: 545 }, { id: "W6", group: "w", x: 420, y: 545 },
-];
-
-function seatArea(seat) {
-  return SEAT_GROUPS.find((g) => g.id === seat.group).label.toLowerCase();
+function tableById(id) {
+  return TABLES.find((t) => t.id === id);
 }
 
-const state = { eventId: EVENTS[0].id, selected: new Set() };
+const state = { selected: new Set() };
 
 const seatmapEl = document.getElementById("seatmap");
-const selectEl = document.getElementById("event-select");
 const summaryEl = document.getElementById("booking-summary");
 const formEl = document.getElementById("booking-form");
-const eventListEl = document.getElementById("event-list");
 const seatListEl = document.getElementById("seat-list");
 const seatListGridEl = document.getElementById("seat-list-grid");
 const fallbackEl = document.getElementById("mail-fallback");
@@ -96,201 +40,146 @@ function scrollToEl(el) {
   el.scrollIntoView({ behavior: reducedMotion.matches ? "auto" : "smooth" });
 }
 
-function currentEvent() {
-  return EVENTS.find((e) => e.id === state.eventId);
-}
-
-/* ---------- Karty wydarzeń ---------- */
-
-function renderEventList() {
-  eventListEl.innerHTML = EVENTS.map(
-    (ev) => `
-    <article class="card event-card reveal">
-      <span class="event-card__date"><time datetime="${ev.iso}">${ev.date}</time></span>
-      <h3>${ev.title}</h3>
-      <p>${ev.desc}</p>
-      <div class="event-card__meta"><span>Cena: ${ev.price}</span><span>Wolnych miejsc: ${SEATS.length - ev.taken.length}</span></div>
-      <button class="btn" type="button" data-event="${ev.id}">Wybierz miejsca</button>
-    </article>`
-  ).join("");
-
-  eventListEl.querySelectorAll("button[data-event]").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      setEvent(btn.dataset.event);
-      scrollToEl(document.getElementById("rezerwacja"));
-    });
-  });
-}
-
 /* ---------- Plan sali (renderowany raz; stan aktualizowany w miejscu) ---------- */
 
 function renderSeatmap() {
-  const seatGroups = SEATS.map((s) => `
-      <g class="seat-group" data-seat-group="${s.id}">
-        <circle class="seat" data-seat="${s.id}" cx="${s.x}" cy="${s.y}" r="17"
-          role="button" tabindex="0" aria-pressed="false" aria-label="Miejsce ${s.id}, ${seatArea(s)}"></circle>
-        <path class="seat-x" aria-hidden="true"
-          d="M ${s.x - 10} ${s.y - 10} L ${s.x + 10} ${s.y + 10} M ${s.x + 10} ${s.y - 10} L ${s.x - 10} ${s.y + 10}"></path>
-        <text class="seat-label" x="${s.x}" y="${s.y + 5}">${s.id}</text>
+  const markers = TABLES.map((t) => `
+      <g class="seat-group" data-seat-group="${t.id}">
+        <circle class="seat" data-seat="${t.id}" cx="${t.x}" cy="${t.y}" r="24"
+          role="button" tabindex="0" aria-pressed="false"
+          aria-label="${t.name}, ${t.desc}"></circle>
+        <text class="seat-label" x="${t.x}" y="${t.y + 5}">${t.id}</text>
       </g>`
   ).join("");
 
   seatmapEl.innerHTML = `
-    <svg viewBox="0 0 760 640">
-      <!-- okno i bar -->
-      <line x1="80" y1="22" x2="420" y2="22" stroke="#5b7b8c" stroke-width="5" stroke-dasharray="14 8"/>
-      <text class="room-label" x="250" y="14">okno</text>
-      <rect x="90" y="40" width="320" height="26" rx="10" fill="#5c4a3a"/>
-      <text class="room-label" x="250" y="59" style="fill:#faf5ec">bar</text>
+    <svg viewBox="0 0 700 560">
+      <!-- okno -->
+      <line x1="60" y1="24" x2="470" y2="24" stroke="#9fb6c6" stroke-width="5" stroke-dasharray="14 8"/>
+      <text class="room-label" x="265" y="16">okno</text>
+
+      <!-- bar przy prawej ścianie -->
+      <rect x="592" y="110" width="56" height="300" rx="16" fill="#ece0cd" stroke="#ddcdb2" stroke-width="2"/>
+      <text class="room-label" x="620" y="135">bar</text>
 
       <!-- stoliki kawiarniane -->
-      <circle cx="600" cy="120" r="32" fill="#e7d9c2" stroke="#c9b894" stroke-width="2"/>
-      <circle cx="160" cy="290" r="36" fill="#e7d9c2" stroke="#c9b894" stroke-width="2"/>
-      <circle cx="400" cy="290" r="36" fill="#e7d9c2" stroke="#c9b894" stroke-width="2"/>
-      <circle cx="640" cy="345" r="30" fill="#e7d9c2" stroke="#c9b894" stroke-width="2"/>
+      <circle cx="250" cy="150" r="40" fill="#efe4d2" stroke="#ddcdb2" stroke-width="2"/>
+      <circle cx="430" cy="150" r="40" fill="#efe4d2" stroke="#ddcdb2" stroke-width="2"/>
+      <circle cx="250" cy="300" r="40" fill="#efe4d2" stroke="#ddcdb2" stroke-width="2"/>
+      <circle cx="430" cy="300" r="40" fill="#efe4d2" stroke="#ddcdb2" stroke-width="2"/>
 
       <!-- stół warsztatowy -->
-      <rect x="120" y="448" width="360" height="70" rx="16" fill="#e7d9c2" stroke="#c9b894" stroke-width="2"/>
-      <text class="room-label" x="300" y="488">stół warsztatowy</text>
+      <rect x="180" y="424" width="340" height="72" rx="16" fill="#efe4d2" stroke="#ddcdb2" stroke-width="2"/>
+      <text class="room-label" x="350" y="412">stół warsztatowy</text>
 
-      <!-- półki z ceramiką i piec -->
-      <rect x="560" y="430" width="120" height="26" rx="8" fill="#cdbfa6"/>
-      <text class="room-label" x="620" y="448">półki</text>
-      <rect x="560" y="490" width="120" height="60" rx="10" fill="#cdbfa6"/>
-      <text class="room-label" x="620" y="525">piec</text>
+      <!-- półki i piec -->
+      <rect x="585" y="430" width="80" height="22" rx="8" fill="#e2d4bd"/>
+      <text class="room-label" x="625" y="446">półki</text>
+      <rect x="585" y="468" width="80" height="46" rx="10" fill="#e2d4bd"/>
+      <text class="room-label" x="625" y="496">piec</text>
 
       <!-- wejście -->
-      <line x1="80" y1="615" x2="170" y2="615" stroke="#c0653f" stroke-width="6" stroke-linecap="round"/>
-      <text class="room-label" x="125" y="600">wejście</text>
+      <line x1="60" y1="540" x2="150" y2="540" stroke="#c0894f" stroke-width="6" stroke-linecap="round"/>
+      <text class="room-label" x="105" y="526">wejście</text>
 
-      ${seatGroups}
+      ${markers}
     </svg>`;
 
   seatmapEl.querySelectorAll(".seat").forEach((el) => {
-    el.addEventListener("click", () => toggleSeat(el.dataset.seat));
+    el.addEventListener("click", () => toggleTable(el.dataset.seat));
     el.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
-        toggleSeat(el.dataset.seat);
+        toggleTable(el.dataset.seat);
       }
     });
   });
 }
 
-/* ---------- Lista miejsc (alternatywa dla mapy, zsynchronizowana) ---------- */
+/* ---------- Lista stolików (alternatywa dla mapy, zsynchronizowana) ---------- */
 
 function renderSeatList() {
   /* Zwinięta na szerokich ekranach, rozwinięta na wąskich (wygodniejsza niż mapa). */
   seatListEl.open = window.matchMedia("(max-width: 719.98px)").matches;
 
-  seatListGridEl.innerHTML = SEAT_GROUPS.map((group) => {
-    const pills = SEATS.filter((s) => s.group === group.id).map((s) => `
-      <label class="seat-pill" for="seat-cb-${s.id}" data-seat-pill="${s.id}">
-        <input type="checkbox" id="seat-cb-${s.id}" value="${s.id}"
-          aria-label="Miejsce ${s.id}, ${group.label.toLowerCase()}">
-        <span class="seat-pill__text">${s.id}</span>
-        <span class="seat-pill__taken-note">zajęte</span>
+  const pills = TABLES.map((t) => `
+      <label class="seat-pill" for="seat-cb-${t.id}" data-seat-pill="${t.id}">
+        <input type="checkbox" id="seat-cb-${t.id}" value="${t.id}"
+          aria-label="${t.name}, ${t.desc}">
+        <span class="seat-pill__text">${t.name}</span>
       </label>`
-    ).join("");
+  ).join("");
 
-    return `
+  seatListGridEl.innerHTML = `
     <fieldset class="seat-list__group">
-      <legend>${group.label}</legend>
+      <legend>Stoliki</legend>
       <div class="seat-list__pills">${pills}</div>
     </fieldset>`;
-  }).join("");
 
   seatListGridEl.querySelectorAll("input[type=checkbox]").forEach((cb) => {
-    cb.addEventListener("change", () => toggleSeat(cb.value));
+    cb.addEventListener("change", () => toggleTable(cb.value));
   });
 }
 
 /* ---------- Aktualizacja stanu (bez przebudowy DOM - fokus zostaje) ---------- */
 
 function updateUI() {
-  const taken = new Set(currentEvent().taken);
+  TABLES.forEach((t) => {
+    const isSelected = state.selected.has(t.id);
 
-  SEATS.forEach((s) => {
-    const isTaken = taken.has(s.id);
-    const isSelected = state.selected.has(s.id);
-
-    const group = seatmapEl.querySelector(`[data-seat-group="${s.id}"]`);
+    const group = seatmapEl.querySelector(`[data-seat-group="${t.id}"]`);
     const seat = group.querySelector(".seat");
-    group.classList.toggle("seat-group--taken", isTaken);
     group.classList.toggle("seat-group--selected", isSelected);
-    seat.classList.toggle("seat--taken", isTaken);
     seat.classList.toggle("seat--selected", isSelected);
     seat.setAttribute("aria-pressed", String(isSelected));
-    if (isTaken) {
-      seat.setAttribute("aria-disabled", "true");
-      seat.setAttribute("aria-label", `Miejsce ${s.id}, ${seatArea(s)} - zajęte`);
-    } else {
-      seat.removeAttribute("aria-disabled");
-      seat.setAttribute("aria-label", `Miejsce ${s.id}, ${seatArea(s)}`);
-    }
 
-    const cb = document.getElementById(`seat-cb-${s.id}`);
+    const cb = document.getElementById(`seat-cb-${t.id}`);
     cb.checked = isSelected;
-    cb.disabled = isTaken;
-    cb.setAttribute("aria-label", isTaken
-      ? `Miejsce ${s.id}, ${seatArea(s)} - zajęte`
-      : `Miejsce ${s.id}, ${seatArea(s)}`);
 
-    const pill = seatListGridEl.querySelector(`[data-seat-pill="${s.id}"]`);
+    const pill = seatListGridEl.querySelector(`[data-seat-pill="${t.id}"]`);
     pill.classList.toggle("seat-pill--selected", isSelected);
-    pill.classList.toggle("seat-pill--taken", isTaken);
   });
 }
 
-/* ---------- Wybór miejsc i podsumowanie ---------- */
+/* ---------- Wybór stolików i podsumowanie ---------- */
 
-function toggleSeat(id) {
-  if (currentEvent().taken.includes(id)) return;
+function toggleTable(id) {
   state.selected.has(id) ? state.selected.delete(id) : state.selected.add(id);
   updateUI();
   renderSummary();
 }
 
+function selectedNames() {
+  return TABLES.filter((t) => state.selected.has(t.id)).map((t) => t.name);
+}
+
 function renderSummary(extraMessage) {
-  const ev = currentEvent();
-  const seats = [...state.selected].sort();
+  const names = selectedNames();
   const prefix = extraMessage ? `${extraMessage}<br>` : "";
-  summaryEl.innerHTML = seats.length
-    ? `${prefix}<strong>${ev.title}</strong> · ${ev.date}<br>Wybrane miejsca: <strong>${seats.join(", ")}</strong> (${seats.length} os. × ${ev.price})`
-    : `${prefix}Nie wybrano jeszcze żadnego miejsca.`;
-}
-
-function setEvent(id) {
-  if (id === state.eventId) return;
-  const hadSelection = state.selected.size > 0;
-  state.eventId = id;
-  state.selected.clear();
-  selectEl.value = id;
-  updateUI();
-  renderSummary(hadSelection ? "Zmieniono wydarzenie - poprzedni wybór miejsc został wyczyszczony." : undefined);
-}
-
-function renderEventSelect() {
-  selectEl.innerHTML = EVENTS.map(
-    (ev) => `<option value="${ev.id}">${ev.title} - ${ev.date}</option>`
-  ).join("");
-  selectEl.addEventListener("change", () => setEvent(selectEl.value));
+  summaryEl.innerHTML = names.length
+    ? `${prefix}Wybrane stoliki: <strong>${names.join(", ")}</strong>`
+    : `${prefix}Nie wybrano jeszcze żadnego stolika.`;
 }
 
 /* ---------- Wysyłka (mailto + fallback do skopiowania) ---------- */
 
 function buildMessage() {
-  const ev = currentEvent();
-  const seats = [...state.selected].sort();
+  const names = selectedNames();
+  const date = document.getElementById("booking-date").value;
+  const time = document.getElementById("booking-time").value;
+  const people = document.getElementById("booking-people").value.trim();
   const name = document.getElementById("booking-name").value.trim();
   const contact = document.getElementById("booking-phone").value.trim();
 
-  const subject = `Rezerwacja: ${ev.title} (${seats.join(", ")})`;
+  const subject = `Rezerwacja stolika: ${names.join(", ")} (${date} ${time})`;
   const body = [
     "Dzień dobry,",
     "",
-    `chcę zarezerwować miejsca na wydarzenie „${ev.title}” (${ev.date}).`,
-    `Miejsca: ${seats.join(", ")} (liczba osób: ${seats.length})`,
+    "chcę zarezerwować stolik w Art Café „Wypij wymaluj”.",
+    `Stolik(i): ${names.join(", ")}`,
+    `Data: ${date}`,
+    `Godzina: ${time}`,
+    `Liczba osób: ${people || "-"}`,
     `Imię i nazwisko: ${name}`,
     `Kontakt: ${contact}`,
     "",
@@ -303,7 +192,7 @@ function buildMessage() {
 formEl.addEventListener("submit", (e) => {
   e.preventDefault();
   if (!state.selected.size) {
-    renderSummary("Najpierw zaznacz przynajmniej jedno miejsce na planie sali lub liście.");
+    renderSummary("Najpierw zaznacz przynajmniej jeden stolik na planie sali lub liście.");
     return;
   }
 
@@ -340,8 +229,6 @@ copyBtnEl.addEventListener("click", () => {
   }
 });
 
-renderEventList();
-renderEventSelect();
 renderSeatmap();
 renderSeatList();
 updateUI();
