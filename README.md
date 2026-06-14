@@ -1,8 +1,8 @@
 # Art Café „Wypij wymaluj” - strona kawiarni
 
 Statyczna, minimalistyczna strona kawiarni połączonej z pracownią malowania
-ceramiki (inspiracja: Create Café). Bez backendu i bez procesu budowania -
-czysty HTML, CSS i odrobina JavaScriptu.
+ceramiki. Bez backendu i bez procesu budowania - czysty HTML, CSS i odrobina
+JavaScriptu.
 
 ## Podgląd lokalny
 
@@ -17,31 +17,35 @@ python3 -m http.server 8000
 
 | Plik | Zakładka |
 |---|---|
-| `index.html` | Główna - duże hero z przedstawieniem konceptu |
-| `menu.html` | Menu z obrazkami (kawy, napoje, słodkości) |
-| `ceramika.html` | Opis konceptu i zasady działania krok po kroku |
-| `wydarzenia.html` | Wydarzenia + wizualna rezerwacja konkretnych miejsc na planie sali |
+| `index.html` | Strona główna - hero z konceptem i hasłem Wypij/Wymaluj/Odetchnij |
+| `jak-to-dziala.html` | Jak to działa - zasady krok po kroku |
+| `rezerwacja.html` | Rezerwacja stolika - plan sali + termin (data, godzina) |
+| `menu.html` | Menu (bez cen) w 3 sekcjach sezonowych, z ikonami line-art |
+| `oferta.html` | Wydarzenia grupowe (urodziny, wieczory panieńskie, firmowe, baby shower, rodzinne) |
 | `faq.html` | Najczęstsze pytania |
 | `kontakt.html` | Dane teleadresowe, sociale, godziny otwarcia, mapa (OpenStreetMap) |
 
 Wspólne zasoby: `css/styles.css`, `js/main.js` (nawigacja mobilna, animacje),
-`js/rezerwacje.js` (wydarzenia i mapa miejsc), `assets/favicon.svg`.
+`js/rezerwacje.js` (plan sali i rezerwacja stolika), `assets/logo.png`,
+`assets/favicon.png`.
 
 ## Edycja treści
 
-- **Wydarzenia i zajętość miejsc** - tablica `EVENTS` na górze
-  `js/rezerwacje.js`. Pole `taken` zawiera identyfikatory zajętych miejsc
-  (np. `"T2-1"`, `"W3"`). Układ sali definiuje tablica `SEATS` tamże.
+- **Stoliki na planie sali** - tablica `TABLES` na górze `js/rezerwacje.js`
+  (id, nazwa, opis, pozycja x/y). Mapa nie oznacza zajętości - dostępność
+  w danym terminie potwierdza obsługa.
 - **Adres e-mail rezerwacji** - stała `BOOKING_EMAIL` w `js/rezerwacje.js`.
   Formularz nie ma backendu: otwiera klienta poczty gościa z gotową
-  wiadomością (`mailto:`).
-- **Dane kontaktowe, telefony, sociale** - `kontakt.html` oraz stopki na
-  wszystkich podstronach (adres `ul. Ceramiczna 7, Kraków` jest przykładowy -
+  wiadomością (`mailto:`) i pokazuje ją też na stronie do skopiowania.
+- **Menu** - pozycje i sekcje sezonowe edytuje się bezpośrednio w `menu.html`.
+  Ikony to grafiki SVG w stylu logo; w miejsce `.menu-card__img` można wstawić
+  prawdziwe zdjęcia.
+- **Dane kontaktowe, telefony, sociale, godziny** - `kontakt.html` oraz stopki
+  na wszystkich podstronach (adres `ul. Ceramiczna 7, Kraków` jest przykładowy -
   podmień na prawdziwy, w tym współrzędne mapy w `kontakt.html`).
-- **Zdjęcie hero** - na stronie głównej jest ilustracja SVG; można ją
-  podmienić na prawdziwe zdjęcie, wstawiając `<img>` w sekcji
-  `.hero__art` w `index.html`.
-- **Kolory i typografia** - zmienne CSS na górze `css/styles.css`.
+- **Logo** - `assets/logo.png` (nagłówek) i `assets/favicon.png`.
+- **Kolory i typografia** - zmienne CSS na górze `css/styles.css`
+  (paleta: krem #FDF6EC, beż #F3E9DD, błękit #B7CADB, piaskowy #DAB88B).
 
 ## Wdrożenie
 
