@@ -54,7 +54,7 @@ h3 { font-size: 1.25rem; }
 
 p { margin: 0 0 1em; }
 
-a { color: var(--terra-dark); }
+a { color: var(--paint-blue-dark); }
 
 .container {
   max-width: var(--container);
@@ -71,7 +71,7 @@ a { color: var(--terra-dark); }
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--terra-dark);
+  color: var(--paint-blue-dark);
   margin-bottom: 0.75rem;
 }
 
@@ -777,7 +777,7 @@ main:focus {
   content: "+";
   font-family: var(--font-display);
   font-size: 1.5rem;
-  color: var(--terra-dark);
+  color: var(--paint-blue-dark);
   line-height: 1;
   transition: transform 0.2s;
 }
@@ -876,7 +876,7 @@ main:focus {
   letter-spacing: 0.04em;
 }
 
-.ticker .dotsep { color: var(--terra); margin: 0 0.6rem; }
+.ticker .dotsep { color: var(--paint-blue); margin: 0 0.6rem; }
 
 /* ---------- Stopka ---------- */
 
@@ -901,7 +901,7 @@ main:focus {
   font-size: 1rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--paint-yellow);
+  color: var(--paint-blue);
 }
 
 .site-footer ul {
