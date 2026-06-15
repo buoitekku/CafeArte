@@ -348,6 +348,7 @@ main:focus {
 }
 
 .menu-card__img svg { height: 110px; width: auto; }
+.menu-card__img img { height: 100px; width: 100px; }
 
 .menu-card__body {
   padding: 1.1rem 1.4rem 1.4rem;
