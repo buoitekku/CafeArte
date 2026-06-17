@@ -890,7 +890,7 @@ main:focus {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: var(--shadow);
+  box-shadow: 10px -10px 0 0 var(--paint-blue), var(--shadow);
 }
 
 .map-frame iframe {
