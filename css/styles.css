@@ -884,7 +884,7 @@ main:focus {
   transition: border-color 0.2s, background 0.2s;
 }
 
-.socials a:hover { border-color: var(--terra); background: var(--cream-2); }
+.socials a:hover { border-color: var(--paint-blue-dark); background: var(--blue-soft); }
 
 .map-frame {
   border: 1px solid var(--line);
@@ -900,13 +900,21 @@ main:focus {
   border: 0;
 }
 
+.hours-panel {
+  background: var(--blue-soft);
+  border: 1px solid var(--paint-blue);
+  border-radius: var(--radius-sm);
+  padding: 0.4rem 1.1rem;
+}
+
 .hours-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.97rem;
 }
 
-.hours-table td { padding: 0.45rem 0; border-bottom: 1px dashed var(--line); }
+.hours-table td { padding: 0.5rem 0; border-bottom: 1px dashed rgba(65, 97, 122, 0.22); }
+.hours-table tr:last-child td { border-bottom: 0; }
 .hours-table td:last-child { text-align: right; font-weight: 600; }
 
 /* ---------- Pasek wyróżnień ---------- */
