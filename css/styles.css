@@ -307,7 +307,7 @@ main:focus {
 .hero__media__frame svg { width: 100%; height: 100%; display: block; }
 
 /* Mniejszy znak ilustracyjny (np. w sekcji zaproszenia) */
-.hero-mark { width: 132px; height: auto; margin: 0 auto 1rem; display: block; }
+.hero-mark { width: 300px; max-width: 80%; height: auto; margin: 0 auto 1.25rem; display: block; }
 
 .hero__actions {
   display: flex;
