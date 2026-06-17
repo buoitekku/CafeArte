@@ -914,16 +914,19 @@ main:focus {
 .ticker {
   background: var(--paint-blue);
   color: var(--espresso);
-  padding: 0.85rem 1rem;
+  padding: 0.95rem 1rem;
   text-align: center;
-  font-size: 0.92rem;
+  font-family: var(--font-display);
+  font-style: italic;
   font-weight: 500;
-  letter-spacing: 0.04em;
+  font-size: clamp(1.05rem, 2.1vw, 1.45rem);
+  line-height: 1.35;
+  letter-spacing: 0;
   border-top: 1px solid var(--paint-blue-dark);
   border-bottom: 1px solid var(--paint-blue-dark);
 }
 
-.ticker .dotsep { color: var(--terra-accent); margin: 0 0.6rem; }
+.ticker .dotsep { font-style: normal; color: var(--terra-accent); margin: 0 0.75rem; }
 
 /* ---------- Stopka ---------- */
 
