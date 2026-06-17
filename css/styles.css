@@ -377,11 +377,11 @@ main:focus {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: var(--shadow);
-  transition: transform 0.2s;
+  box-shadow: 9px -9px 0 0 var(--paint-blue), var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.menu-card:hover { transform: translateY(-3px); }
+.menu-card:hover { transform: translateY(-3px); box-shadow: 13px -13px 0 0 var(--paint-blue), 0 16px 40px rgba(58, 47, 37, 0.12); }
 
 .menu-card__img {
   background: var(--cream-2);
@@ -493,7 +493,7 @@ main:focus {
   background: var(--paper);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  box-shadow: 10px -10px 0 0 var(--paint-blue), var(--shadow);
   padding: 1.5rem;
 }
 
