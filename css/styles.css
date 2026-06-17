@@ -23,8 +23,8 @@
   --radius-sm: 12px;
   --shadow: 0 10px 30px rgba(58, 47, 37, 0.08);
   --container: 1120px;
-  --font-display: “Fraunces”, Georgia, serif;
-  --font-body: “Work Sans”, “Segoe UI”, system-ui, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Work Sans", "Segoe UI", system-ui, sans-serif;
 }
 
 * { box-sizing: border-box; }
