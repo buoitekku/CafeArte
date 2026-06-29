@@ -373,7 +373,6 @@ main:focus {
   .hero__card { border-radius: 26px; }
   .hero__row { min-height: 0; }
   .hero__side { display: none; }
-  .hero__dot { display: none; }
   .hero__copy { max-width: none; padding: 2.75rem 1.5rem 0.5rem; }
   .hero__photo {
     position: relative;
