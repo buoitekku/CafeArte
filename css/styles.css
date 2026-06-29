@@ -22,6 +22,8 @@
   --paint-sage: #aebb9e;
   --paint-yellow: var(--blue-soft);
   --line: #e7d8c4;
+  /* Sylwetka chmurki (lity rdzeń + bąble) - kolor #41617a zapieczony w SVG */
+  --cloud-svg: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 140" preserveAspectRatio="none"><g fill="%2341617a"><rect x="16" y="24" width="188" height="100" rx="46"/><circle cx="54" cy="32" r="34"/><circle cx="104" cy="22" r="42"/><circle cx="152" cy="30" r="36"/><circle cx="188" cy="46" r="26"/><circle cx="24" cy="66" r="30"/><circle cx="198" cy="74" r="24"/><circle cx="70" cy="122" r="18"/><circle cx="134" cy="124" r="18"/><circle cx="176" cy="120" r="16"/></g></svg>');
   --radius: 18px;
   --radius-sm: 12px;
   --shadow: 0 10px 30px rgba(58, 47, 37, 0.08);
@@ -272,13 +274,44 @@ main:focus {
   border-bottom: 1px solid var(--paint-blue-dark);
 }
 
-/* Chmurka pod napisami - ciemniejszy błękit jako podkład tekstu */
-.hero__panel {
-  background: var(--paint-blue-dark);
+/* Chmurka pod napisami - sylwetka chmurki (SVG) z litym rdzeniem pod tekstem
+   oraz rozmytą, identycznie ukształtowaną poświatą (fade) rozpływającą się
+   w jasnym błękicie tła. */
+.hero__panel,
+.page-hero__cloud {
+  position: relative;
+  isolation: isolate;
   color: #fff;
-  border-radius: 30px;
-  padding: 2.25rem 2.4rem 2.5rem;
-  box-shadow: var(--shadow);
+}
+
+.hero__panel > *,
+.page-hero__cloud > * { position: relative; z-index: 1; }
+
+/* Lita chmurka - tło pod tekstem */
+.hero__panel::after,
+.page-hero__cloud::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: var(--cloud-svg) center / 100% 100% no-repeat;
+  filter: drop-shadow(0 16px 36px rgba(52, 80, 95, 0.30));
+}
+
+/* Rozmyta kopia chmurki - miękki fade krawędzi */
+.hero__panel::before,
+.page-hero__cloud::before {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  inset: -24px -30px;
+  background: var(--cloud-svg) center / 100% 100% no-repeat;
+  filter: blur(24px);
+  opacity: 0.45;
+}
+
+.hero__panel {
+  padding: 3rem 3.2rem 3.1rem;
 }
 
 .hero__panel h1 { color: #fff; }
@@ -377,14 +410,10 @@ main:focus {
   padding: 3.25rem 0;
 }
 
-/* Chmurka pod napisami - ciemniejszy błękit, otoczony jasnym #B7CADB */
+/* Chmurka podstron - ten sam kształt, otoczona jasnym #B7CADB */
 .page-hero__cloud {
-  background: var(--paint-blue-dark);
-  color: #fff;
-  border-radius: 30px;
-  padding: 2rem 2.4rem 2.25rem;
+  padding: 2.8rem 3.2rem 2.9rem;
   max-width: 58rem;
-  box-shadow: var(--shadow);
 }
 
 .page-hero__cloud h1 { color: #fff; margin-bottom: 0.35rem; }
