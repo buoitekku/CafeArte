@@ -311,7 +311,17 @@ main:focus {
 
 .hero__copy h1 { color: #fff; }
 .hero__copy .lead { color: rgba(255, 255, 255, 0.9); }
-.hero__copy .section-label { color: var(--blue-soft); }
+
+/* Nadkreślenie w hero - szeryfowe, pisane normalnie (jak nagłówek) */
+.hero__copy .section-label {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.2rem;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  color: rgba(255, 255, 255, 0.92);
+  margin-bottom: 1.25rem;
+}
 
 /* Zdjęcie w kole - nachodzi na podział (lekko ku środkowi) */
 .hero__photo {
