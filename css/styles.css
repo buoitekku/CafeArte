@@ -1,6 +1,7 @@
 /* ============================================================
    Art Café „Wypij wymaluj” - wspólne style
-   Paleta: krem #FDF6EC / beż #F3E9DD / błękit #B7CADB / piaskowy #DAB88B
+   Paleta wiodąca: błękit #41617A / biel / jasny beż #FDF6EC
+   (akcenty interaktywne na błękicie, dekoracyjny piaskowy tylko w ilustracjach)
    ============================================================ */
 
 :root {
@@ -9,15 +10,17 @@
   --paper: #fffdf8;
   --espresso: #3a2f25;
   --brown: #6b5d4d;
-  --terra: #dab88b;
-  --terra-dark: #6b4f2e;
-  --terra-darker: #523a22;
   --paint-blue: #b7cadb;
   --paint-blue-dark: #41617a;
+  --paint-blue-darker: #34505f;
   --blue-soft: #dbe6ef;
+  /* Akcenty interaktywne prowadzone na błękit (dawniej terakota) */
+  --terra: var(--paint-blue-dark);
+  --terra-dark: var(--paint-blue-dark);
+  --terra-darker: var(--paint-blue-darker);
   --terra-accent: #c98a5c;
   --paint-sage: #aebb9e;
-  --paint-yellow: #dab88b;
+  --paint-yellow: var(--blue-soft);
   --line: #e7d8c4;
   --radius: 18px;
   --radius-sm: 12px;
@@ -211,8 +214,8 @@ main:focus {
 .site-nav a:hover { background: var(--cream-2); }
 
 .site-nav a[aria-current="page"] {
-  background: var(--espresso);
-  color: var(--cream);
+  background: var(--paint-blue-dark);
+  color: #fff;
 }
 
 .nav-toggle {
@@ -264,8 +267,42 @@ main:focus {
 .hero {
   position: relative;
   overflow: hidden;
-  background: var(--cream-2);
-  border-bottom: 1px solid var(--line);
+  background: var(--paint-blue-dark);
+  color: #fff;
+  border-bottom: 1px solid var(--paint-blue-darker);
+}
+
+.hero h1 { color: #fff; }
+.hero .lead { color: rgba(255, 255, 255, 0.92); }
+.hero .section-label { color: var(--blue-soft); }
+
+/* Przyciski na ciemnym błękicie - odwrócone (biały / kontur) */
+.hero .btn,
+.page-hero .btn {
+  background: #fff;
+  border-color: #fff;
+  color: var(--paint-blue-dark);
+}
+
+.hero .btn:hover,
+.page-hero .btn:hover {
+  background: var(--blue-soft);
+  border-color: var(--blue-soft);
+  color: var(--paint-blue-dark);
+}
+
+.hero .btn--ghost,
+.page-hero .btn--ghost {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+.hero .btn--ghost:hover,
+.page-hero .btn--ghost:hover {
+  background: #fff;
+  color: var(--paint-blue-dark);
+  border-color: #fff;
 }
 
 .hero__inner {
@@ -289,7 +326,7 @@ main:focus {
   bottom: -16px;
   width: 72%;
   height: 78%;
-  background: var(--paint-blue);
+  background: var(--cream-2);
   border-radius: 26px;
   z-index: 0;
 }
@@ -325,10 +362,16 @@ main:focus {
 /* Hero podstronowy (mniejszy) */
 
 .page-hero {
-  background: var(--cream-2);
-  border-bottom: 1px solid var(--line);
+  background: var(--paint-blue-dark);
+  color: #fff;
+  border-bottom: 1px solid var(--paint-blue-darker);
   padding: 3.25rem 0;
 }
+
+.page-hero h1 { color: #fff; }
+.page-hero .lead { color: rgba(255, 255, 255, 0.92); }
+.page-hero .section-label { color: var(--blue-soft); }
+.page-hero a:not(.btn) { color: #fff; }
 
 /* ---------- Karty / siatki ---------- */
 
@@ -912,21 +955,21 @@ main:focus {
 /* ---------- Pasek wyróżnień ---------- */
 
 .ticker {
-  background: var(--paint-blue);
-  color: var(--espresso);
-  padding: 0.95rem 1rem;
+  background: var(--cream);
+  color: var(--brown);
+  padding: 1.1rem 1.25rem;
   text-align: center;
-  font-family: var(--font-display);
-  font-style: italic;
+  font-family: var(--font-body);
+  font-style: normal;
   font-weight: 500;
-  font-size: clamp(1.05rem, 2.1vw, 1.45rem);
-  line-height: 1.35;
-  letter-spacing: 0;
-  border-top: 1px solid var(--paint-blue-dark);
-  border-bottom: 1px solid var(--paint-blue-dark);
+  font-size: 0.78rem;
+  line-height: 1.7;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--line);
 }
 
-.ticker .dotsep { font-style: normal; color: var(--terra-accent); margin: 0 0.75rem; }
+.ticker .dotsep { color: var(--paint-blue-dark); margin: 0 0.6rem; }
 
 /* ---------- Stopka ---------- */
 
