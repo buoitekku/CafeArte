@@ -264,53 +264,79 @@ main:focus {
 
 /* ---------- Hero ---------- */
 
-/* Podział hero krzywą: tekst po lewej (ciemny błękit),
-   zdjęcie po prawej w jasnobłękitnym polu z łukowatą krawędzią. */
+/* Hero jako zaokrąglony baner: tekst po lewej (ciemny błękit), jasnobłękitne
+   pole z łukiem po prawej, zdjęcie w kole nachodzące na podział, a pasek
+   wyróżnień wkomponowany w dolną, zaokrągloną część karty. */
 .hero {
+  background: var(--cream);
+  padding: 1.5rem 1.25rem 0.75rem;
+}
+
+.hero__card {
   position: relative;
+  max-width: var(--container);
+  margin: 0 auto;
+  border-radius: 34px;
   overflow: hidden;
   background: var(--paint-blue-dark);
+  box-shadow: 0 24px 60px rgba(52, 80, 95, 0.22);
+}
+
+.hero__row {
+  position: relative;
+  overflow: hidden;
+  min-height: 480px;
+}
+
+/* Jasnobłękitne pole z łukowatą lewą krawędzią */
+.hero__side {
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  right: 0;
+  width: 52%;
+  background: var(--paint-blue);
+  border-top-left-radius: 64% 50%;
+  border-bottom-left-radius: 64% 50%;
+  z-index: 0;
+}
+
+/* Akcentowa kropka przy lewej krawędzi */
+.hero__dot {
+  position: absolute;
+  z-index: 2;
+  left: -22px;
+  top: 118px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--paint-blue);
+}
+
+.hero__copy {
+  position: relative;
+  z-index: 2;
+  max-width: 29rem;
+  padding: 4.25rem 1.25rem 4rem 3rem;
   color: #fff;
 }
 
-.hero__inner {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  min-height: 470px;
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: 4.75rem 1.25rem 5rem;
-}
-
-.hero__copy { max-width: 31rem; }
 .hero__copy h1 { color: #fff; }
 .hero__copy .lead { color: rgba(255, 255, 255, 0.9); }
 .hero__copy .section-label { color: var(--blue-soft); }
 
-/* Jasnobłękitne pole ze zdjęciem - łuk dzieli sekcję */
-.hero__side {
-  position: absolute;
-  top: -15%;
-  bottom: -15%;
-  right: 0;
-  width: 50%;
-  background: var(--paint-blue);
-  border-top-left-radius: 62% 50%;
-  border-bottom-left-radius: 62% 50%;
-  display: grid;
-  place-items: center;
-  z-index: 0;
-}
-
+/* Zdjęcie w kole - nachodzi na podział (lekko ku środkowi) */
 .hero__photo {
-  width: min(76%, 360px);
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 63%;
+  transform: translate(-42%, -50%);
+  width: min(37%, 375px);
   aspect-ratio: 1;
   border-radius: 50%;
   overflow: hidden;
   box-shadow: 0 22px 50px rgba(52, 80, 95, 0.35);
-  transform: translateX(-6%);
 }
 
 .hero__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -355,18 +381,20 @@ main:focus {
 }
 
 @media (max-width: 860px) {
-  .hero__inner { display: block; min-height: 0; padding: 2.75rem 1.25rem 2.25rem; }
-  .hero__copy { max-width: none; }
-  .hero__side {
-    position: static;
-    width: auto;
+  .hero { padding: 1rem 1rem 0.5rem; }
+  .hero__card { border-radius: 26px; }
+  .hero__row { min-height: 0; }
+  .hero__side { display: none; }
+  .hero__dot { display: none; }
+  .hero__copy { max-width: none; padding: 2.75rem 1.5rem 0.5rem; }
+  .hero__photo {
+    position: relative;
     top: auto;
-    bottom: auto;
-    height: 260px;
-    margin-top: 1.75rem;
-    border-radius: 28px;
+    left: auto;
+    transform: none;
+    width: min(62%, 230px);
+    margin: 1.75rem auto 2.75rem;
   }
-  .hero__photo { transform: none; width: min(64%, 260px); }
 }
 
 /* Hero podstronowy (tekst na panelu, tło jasnobłękitne) */
@@ -986,7 +1014,6 @@ main:focus {
   line-height: 1.7;
   letter-spacing: 0.13em;
   text-transform: uppercase;
-  border-bottom: 1px solid var(--line);
 }
 
 .ticker .dotsep { color: var(--paint-blue-dark); margin: 0 0.6rem; }
