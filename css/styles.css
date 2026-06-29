@@ -291,26 +291,14 @@ main:focus {
 /* Jasnobłękitne pole z łukowatą lewą krawędzią */
 .hero__side {
   position: absolute;
-  top: -20%;
-  bottom: -20%;
+  top: -24%;
+  bottom: -24%;
   right: 0;
-  width: 52%;
+  width: 55%;
   background: var(--paint-blue);
-  border-top-left-radius: 64% 50%;
-  border-bottom-left-radius: 64% 50%;
+  border-top-left-radius: 78% 50%;
+  border-bottom-left-radius: 78% 50%;
   z-index: 0;
-}
-
-/* Akcentowa kropka przy lewej krawędzi */
-.hero__dot {
-  position: absolute;
-  z-index: 2;
-  left: -22px;
-  top: 118px;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: var(--paint-blue);
 }
 
 .hero__copy {
@@ -330,9 +318,9 @@ main:focus {
   position: absolute;
   z-index: 1;
   top: 50%;
-  left: 63%;
-  transform: translate(-42%, -50%);
-  width: min(37%, 375px);
+  left: 66%;
+  transform: translate(-50%, -50%);
+  width: min(46%, 470px);
   aspect-ratio: 1;
   border-radius: 50%;
   overflow: hidden;
