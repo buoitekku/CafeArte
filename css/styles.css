@@ -264,48 +264,42 @@ main:focus {
 
 /* ---------- Hero ---------- */
 
-/* Hero jako zaokrąglony baner: tekst po lewej (ciemny błękit), jasnobłękitne
-   pole z łukiem po prawej, zdjęcie w kole nachodzące na podział, a pasek
-   wyróżnień wkomponowany w dolną, zaokrągloną część karty. */
+/* Hero na pełną szerokość strony: tekst po lewej (ciemny błękit), jasnobłękitne
+   pole z łukiem bleedujące do prawej krawędzi ekranu, zdjęcie w kole na podziale. */
 .hero {
-  background: var(--cream);
-  padding: 1.5rem 1.25rem 0.75rem;
-}
-
-.hero__card {
   position: relative;
-  max-width: var(--container);
-  margin: 0 auto;
-  border-radius: 34px;
   overflow: hidden;
   background: var(--paint-blue-dark);
-  box-shadow: 0 24px 60px rgba(52, 80, 95, 0.22);
+  color: #fff;
 }
 
-.hero__row {
-  position: relative;
-  overflow: hidden;
-  min-height: 480px;
-}
-
-/* Jasnobłękitne pole z łukowatą lewą krawędzią */
+/* Jasnobłękitne pole z łukowatą lewą krawędzią - do prawej krawędzi ekranu */
 .hero__side {
   position: absolute;
   top: -24%;
   bottom: -24%;
   right: 0;
-  width: 55%;
+  width: 52%;
   background: var(--paint-blue);
   border-top-left-radius: 78% 50%;
   border-bottom-left-radius: 78% 50%;
   z-index: 0;
 }
 
-.hero__copy {
+.hero__inner {
   position: relative;
   z-index: 2;
+  display: flex;
+  align-items: center;
+  min-height: 500px;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.hero__copy {
   max-width: 29rem;
-  padding: 4.25rem 1.25rem 4rem 3rem;
+  padding: 4.5rem 1.25rem 4.5rem 0;
   color: #fff;
 }
 
@@ -323,14 +317,14 @@ main:focus {
   margin-bottom: 1.25rem;
 }
 
-/* Zdjęcie w kole - nachodzi na podział (lekko ku środkowi) */
+/* Zdjęcie w kole - nachodzi na podział */
 .hero__photo {
   position: absolute;
   z-index: 1;
   top: 50%;
   left: 66%;
   transform: translate(-50%, -50%);
-  width: min(46%, 470px);
+  width: min(40%, 460px);
   aspect-ratio: 1;
   border-radius: 50%;
   overflow: hidden;
@@ -379,11 +373,9 @@ main:focus {
 }
 
 @media (max-width: 860px) {
-  .hero { padding: 1rem 1rem 0.5rem; }
-  .hero__card { border-radius: 26px; }
-  .hero__row { min-height: 0; }
   .hero__side { display: none; }
-  .hero__copy { max-width: none; padding: 2.75rem 1.5rem 0.5rem; }
+  .hero__inner { display: block; min-height: 0; }
+  .hero__copy { max-width: none; padding: 2.75rem 0 0.5rem; }
   .hero__photo {
     position: relative;
     top: auto;
