@@ -267,14 +267,23 @@ main:focus {
 .hero {
   position: relative;
   overflow: hidden;
-  background: var(--paint-blue-dark);
-  color: #fff;
-  border-bottom: 1px solid var(--paint-blue-darker);
+  background: var(--paint-blue);
+  color: var(--espresso);
+  border-bottom: 1px solid var(--paint-blue-dark);
 }
 
-.hero h1 { color: #fff; }
-.hero .lead { color: rgba(255, 255, 255, 0.92); }
-.hero .section-label { color: var(--blue-soft); }
+/* Chmurka pod napisami - ciemniejszy błękit jako podkład tekstu */
+.hero__panel {
+  background: var(--paint-blue-dark);
+  color: #fff;
+  border-radius: 30px;
+  padding: 2.25rem 2.4rem 2.5rem;
+  box-shadow: var(--shadow);
+}
+
+.hero__panel h1 { color: #fff; }
+.hero__panel .lead { color: rgba(255, 255, 255, 0.92); }
+.hero__panel .section-label { color: var(--blue-soft); }
 
 /* Przyciski na ciemnym błękicie - odwrócone (biały / kontur) */
 .hero .btn,
@@ -362,16 +371,27 @@ main:focus {
 /* Hero podstronowy (mniejszy) */
 
 .page-hero {
-  background: var(--paint-blue-dark);
-  color: #fff;
-  border-bottom: 1px solid var(--paint-blue-darker);
+  background: var(--paint-blue);
+  color: var(--espresso);
+  border-bottom: 1px solid var(--paint-blue-dark);
   padding: 3.25rem 0;
 }
 
-.page-hero h1 { color: #fff; }
-.page-hero .lead { color: rgba(255, 255, 255, 0.92); }
-.page-hero .section-label { color: var(--blue-soft); }
-.page-hero a:not(.btn) { color: #fff; }
+/* Chmurka pod napisami - ciemniejszy błękit, otoczony jasnym #B7CADB */
+.page-hero__cloud {
+  background: var(--paint-blue-dark);
+  color: #fff;
+  border-radius: 30px;
+  padding: 2rem 2.4rem 2.25rem;
+  max-width: 58rem;
+  box-shadow: var(--shadow);
+}
+
+.page-hero__cloud h1 { color: #fff; margin-bottom: 0.35rem; }
+.page-hero__cloud .lead { color: rgba(255, 255, 255, 0.92); }
+.page-hero__cloud .section-label { color: var(--blue-soft); }
+.page-hero__cloud a:not(.btn) { color: #fff; }
+.page-hero__cloud > :last-child { margin-bottom: 0; }
 
 /* ---------- Karty / siatki ---------- */
 
