@@ -410,6 +410,64 @@ main:focus {
 .page-hero__cloud a:not(.btn) { color: #fff; }
 .page-hero__cloud > :last-child { margin-bottom: 0; }
 
+/* Hero podstronowy pełnoszerokościowy - spójny z hero strony głównej:
+   tekst po lewej (ciemny błękit), jasnobłękitny łuk-akcent po prawej. */
+.page-hero--full {
+  position: relative;
+  overflow: hidden;
+  background: var(--paint-blue-dark);
+  color: #fff;
+  border-bottom: 0;
+  padding: 0;
+}
+
+.page-hero--full .page-hero__side {
+  position: absolute;
+  top: -35%;
+  bottom: -35%;
+  right: 0;
+  width: 40%;
+  background: var(--paint-blue);
+  border-top-left-radius: 80% 50%;
+  border-bottom-left-radius: 80% 50%;
+  z-index: 0;
+}
+
+.page-hero--full .page-hero__inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  min-height: 280px;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.page-hero--full .page-hero__copy {
+  max-width: 34rem;
+  padding: 3.5rem 1.25rem 3.5rem 0;
+}
+
+.page-hero--full h1 { color: #fff; margin-bottom: 0.4rem; }
+.page-hero--full .lead { color: rgba(255, 255, 255, 0.9); margin-bottom: 0; }
+
+.page-hero--full .section-label {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.2rem;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  color: rgba(255, 255, 255, 0.92);
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 860px) {
+  .page-hero--full .page-hero__side { display: none; }
+  .page-hero--full .page-hero__inner { display: block; min-height: 0; }
+  .page-hero--full .page-hero__copy { max-width: none; padding: 2.5rem 0; }
+}
+
 /* ---------- Karty / siatki ---------- */
 
 .grid {
