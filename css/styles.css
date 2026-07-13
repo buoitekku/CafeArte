@@ -282,8 +282,8 @@ main:focus {
 }
 
 .hero__copy { max-width: 34rem; }
-.hero__copy h1 { color: var(--espresso); }
-.hero__copy .lead { color: var(--espresso); }
+.hero__copy h1 { color: #fff; }
+.hero__copy .lead { color: rgba(255, 255, 255, 0.9); }
 
 /* Nadkreślenie - szeryfowe, ciemnobłękitne (czytelne na jasnym tle) */
 .hero__copy .section-label {
@@ -292,7 +292,7 @@ main:focus {
   font-size: 1.2rem;
   letter-spacing: 0.01em;
   text-transform: none;
-  color: var(--paint-blue-darker);
+  color: rgba(255, 255, 255, 0.92);
   margin-bottom: 1rem;
 }
 
