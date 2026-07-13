@@ -264,71 +264,47 @@ main:focus {
 
 /* ---------- Hero ---------- */
 
-/* Hero na pełną szerokość strony: tekst po lewej (ciemny błękit), jasnobłękitne
-   pole z łukiem bleedujące do prawej krawędzi ekranu, zdjęcie w kole na podziale. */
+/* Hero: jeden jasny odcień błękitu, kwadratowe zdjęcie, ciemny (czytelny) tekst.
+   Jasno, przewiewnie - klimat kawiarni. */
 .hero {
-  position: relative;
-  overflow: hidden;
-  background: var(--paint-blue-dark);
-  color: #fff;
-}
-
-/* Jasnobłękitne pole z łukowatą lewą krawędzią - do prawej krawędzi ekranu */
-.hero__side {
-  position: absolute;
-  top: -24%;
-  bottom: -24%;
-  right: 0;
-  width: 52%;
   background: var(--paint-blue);
-  border-top-left-radius: 78% 50%;
-  border-bottom-left-radius: 78% 50%;
-  z-index: 0;
+  color: var(--espresso);
 }
 
 .hero__inner {
-  position: relative;
-  z-index: 2;
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
   align-items: center;
-  min-height: 500px;
+  gap: 3rem;
   max-width: var(--container);
   margin: 0 auto;
-  padding: 0 1.25rem;
+  padding: 3.75rem 1.25rem 4rem;
 }
 
-.hero__copy {
-  max-width: 29rem;
-  padding: 4.5rem 1.25rem 4.5rem 0;
-  color: #fff;
-}
+.hero__copy { max-width: 34rem; }
+.hero__copy h1 { color: var(--espresso); }
+.hero__copy .lead { color: var(--espresso); }
 
-.hero__copy h1 { color: #fff; }
-.hero__copy .lead { color: rgba(255, 255, 255, 0.9); }
-
-/* Nadkreślenie w hero - szeryfowe, pisane normalnie (jak nagłówek) */
+/* Nadkreślenie - szeryfowe, ciemnobłękitne (czytelne na jasnym tle) */
 .hero__copy .section-label {
   font-family: var(--font-display);
   font-weight: 500;
   font-size: 1.2rem;
   letter-spacing: 0.01em;
   text-transform: none;
-  color: rgba(255, 255, 255, 0.92);
-  margin-bottom: 1.25rem;
+  color: var(--paint-blue-darker);
+  margin-bottom: 1rem;
 }
 
-/* Zdjęcie w kole - nachodzi na podział */
+/* Kwadratowe zdjęcie z zaokrąglonymi rogami */
 .hero__photo {
-  position: absolute;
-  z-index: 1;
-  top: 50%;
-  left: 66%;
-  transform: translate(-50%, -50%);
-  width: min(40%, 460px);
-  aspect-ratio: 1;
-  border-radius: 50%;
+  justify-self: end;
+  width: 100%;
+  max-width: 440px;
+  aspect-ratio: 1 / 1;
+  border-radius: 22px;
   overflow: hidden;
-  box-shadow: 0 22px 50px rgba(52, 80, 95, 0.35);
+  box-shadow: 0 20px 46px rgba(52, 80, 95, 0.28);
 }
 
 .hero__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -343,29 +319,37 @@ main:focus {
 /* Mniejszy znak ilustracyjny (np. w sekcji zaproszenia) */
 .hero-mark { width: 300px; max-width: 80%; height: auto; margin: 0 auto 1.25rem; display: block; }
 
-/* Przyciski na ciemnym błękicie - odwrócone (biały / kontur) */
-.hero .btn,
+/* Przycisk-kontur w hero - ciemniejszy błękit dla kontrastu na jasnym tle */
+.hero .btn--ghost {
+  color: var(--paint-blue-darker);
+  border-color: var(--paint-blue-darker);
+}
+
+.hero .btn--ghost:hover {
+  background: var(--paint-blue-dark);
+  border-color: var(--paint-blue-dark);
+  color: #fff;
+}
+
+/* Przyciski na ciemnym błękicie (podstrony) - odwrócone (biały / kontur) */
 .page-hero .btn {
   background: #fff;
   border-color: #fff;
   color: var(--paint-blue-dark);
 }
 
-.hero .btn:hover,
 .page-hero .btn:hover {
   background: var(--blue-soft);
   border-color: var(--blue-soft);
   color: var(--paint-blue-dark);
 }
 
-.hero .btn--ghost,
 .page-hero .btn--ghost {
   background: transparent;
   color: #fff;
   border-color: rgba(255, 255, 255, 0.7);
 }
 
-.hero .btn--ghost:hover,
 .page-hero .btn--ghost:hover {
   background: #fff;
   color: var(--paint-blue-dark);
@@ -373,17 +357,9 @@ main:focus {
 }
 
 @media (max-width: 860px) {
-  .hero__side { display: none; }
-  .hero__inner { display: block; min-height: 0; }
-  .hero__copy { max-width: none; padding: 2.75rem 0 0.5rem; }
-  .hero__photo {
-    position: relative;
-    top: auto;
-    left: auto;
-    transform: none;
-    width: min(62%, 230px);
-    margin: 1.75rem auto 2.75rem;
-  }
+  .hero__inner { grid-template-columns: 1fr; gap: 1.75rem; padding: 2.5rem 1.25rem 3rem; }
+  .hero__copy { max-width: none; }
+  .hero__photo { justify-self: stretch; max-width: 420px; margin: 0 auto; aspect-ratio: 4 / 3; }
 }
 
 /* Hero podstronowy (tekst na panelu, tło jasnobłękitne) */
