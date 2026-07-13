@@ -14,6 +14,8 @@
   --paint-blue-dark: #41617a;
   --paint-blue-darker: #34505f;
   --blue-soft: #dbe6ef;
+  /* Najjaśniejszy granat czytelny na jasnym błękicie #b7cadb (WCAG AA, 4.57:1) */
+  --ink-blue: #39566f;
   /* Akcenty interaktywne prowadzone na błękit (dawniej terakota) */
   --terra: var(--paint-blue-dark);
   --terra-dark: var(--paint-blue-dark);
@@ -264,10 +266,10 @@ main:focus {
 
 /* ---------- Hero ---------- */
 
-/* Hero: jeden ciemniejszy odcień błękitu, kwadratowe zdjęcie, jasny (biały) tekst. */
+/* Hero: jasny błękit, kwadratowe zdjęcie, tekst w najjaśniejszym czytelnym granacie. */
 .hero {
-  background: var(--paint-blue-dark);
-  color: #fff;
+  background: var(--paint-blue);
+  color: var(--ink-blue);
 }
 
 .hero__inner {
@@ -281,8 +283,8 @@ main:focus {
 }
 
 .hero__copy { max-width: 34rem; }
-.hero__copy h1 { color: #fff; }
-.hero__copy .lead { color: rgba(255, 255, 255, 0.9); }
+.hero__copy h1 { color: var(--ink-blue); }
+.hero__copy .lead { color: var(--ink-blue); }
 
 /* Nadkreślenie - szeryfowe, ciemnobłękitne (czytelne na jasnym tle) */
 .hero__copy .section-label {
@@ -291,7 +293,7 @@ main:focus {
   font-size: 1.2rem;
   letter-spacing: 0.01em;
   text-transform: none;
-  color: rgba(255, 255, 255, 0.92);
+  color: var(--ink-blue);
   margin-bottom: 1rem;
 }
 
@@ -318,29 +320,37 @@ main:focus {
 /* Mniejszy znak ilustracyjny (np. w sekcji zaproszenia) */
 .hero-mark { width: 300px; max-width: 80%; height: auto; margin: 0 auto 1.25rem; display: block; }
 
-/* Przyciski na ciemnym błękicie (hero i podstrony) - odwrócone (biały / kontur) */
-.hero .btn,
+/* Przycisk-kontur w hero (jasne tło) - granatowy kontur dla kontrastu */
+.hero .btn--ghost {
+  color: var(--ink-blue);
+  border-color: var(--ink-blue);
+}
+
+.hero .btn--ghost:hover {
+  background: var(--paint-blue-dark);
+  border-color: var(--paint-blue-dark);
+  color: #fff;
+}
+
+/* Przyciski na ciemnym błękicie (podstrony) - odwrócone (biały / kontur) */
 .page-hero .btn {
   background: #fff;
   border-color: #fff;
   color: var(--paint-blue-dark);
 }
 
-.hero .btn:hover,
 .page-hero .btn:hover {
   background: var(--blue-soft);
   border-color: var(--blue-soft);
   color: var(--paint-blue-dark);
 }
 
-.hero .btn--ghost,
 .page-hero .btn--ghost {
   background: transparent;
   color: #fff;
   border-color: rgba(255, 255, 255, 0.7);
 }
 
-.hero .btn--ghost:hover,
 .page-hero .btn--ghost:hover {
   background: #fff;
   color: var(--paint-blue-dark);
