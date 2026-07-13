@@ -264,11 +264,10 @@ main:focus {
 
 /* ---------- Hero ---------- */
 
-/* Hero: jeden jasny odcień błękitu, kwadratowe zdjęcie, ciemny (czytelny) tekst.
-   Jasno, przewiewnie - klimat kawiarni. */
+/* Hero: jeden ciemniejszy odcień błękitu, kwadratowe zdjęcie, jasny (biały) tekst. */
 .hero {
-  background: var(--paint-blue);
-  color: var(--espresso);
+  background: var(--paint-blue-dark);
+  color: #fff;
 }
 
 .hero__inner {
@@ -319,37 +318,29 @@ main:focus {
 /* Mniejszy znak ilustracyjny (np. w sekcji zaproszenia) */
 .hero-mark { width: 300px; max-width: 80%; height: auto; margin: 0 auto 1.25rem; display: block; }
 
-/* Przycisk-kontur w hero - ciemniejszy błękit dla kontrastu na jasnym tle */
-.hero .btn--ghost {
-  color: var(--paint-blue-darker);
-  border-color: var(--paint-blue-darker);
-}
-
-.hero .btn--ghost:hover {
-  background: var(--paint-blue-dark);
-  border-color: var(--paint-blue-dark);
-  color: #fff;
-}
-
-/* Przyciski na ciemnym błękicie (podstrony) - odwrócone (biały / kontur) */
+/* Przyciski na ciemnym błękicie (hero i podstrony) - odwrócone (biały / kontur) */
+.hero .btn,
 .page-hero .btn {
   background: #fff;
   border-color: #fff;
   color: var(--paint-blue-dark);
 }
 
+.hero .btn:hover,
 .page-hero .btn:hover {
   background: var(--blue-soft);
   border-color: var(--blue-soft);
   color: var(--paint-blue-dark);
 }
 
+.hero .btn--ghost,
 .page-hero .btn--ghost {
   background: transparent;
   color: #fff;
   border-color: rgba(255, 255, 255, 0.7);
 }
 
+.hero .btn--ghost:hover,
 .page-hero .btn--ghost:hover {
   background: #fff;
   color: var(--paint-blue-dark);
