@@ -72,6 +72,11 @@ a { color: var(--paint-blue-dark); }
 .section { padding: 4.5rem 0; }
 .section--tight { padding: 3rem 0; }
 
+/* Sekcja na jasnym błękicie - kremowy akcent kart (odwrotnie niż standardowo) */
+.section--blue { background: var(--paint-blue); }
+.section--blue .card { box-shadow: 9px -9px 0 0 var(--cream-2), var(--shadow); }
+.section--blue .card:hover { box-shadow: 13px -13px 0 0 var(--cream-2), 0 16px 40px rgba(58, 47, 37, 0.12); }
+
 .section-label {
   display: inline-block;
   font-size: 0.8rem;
@@ -274,7 +279,7 @@ main:focus {
 
 .hero__inner {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
   align-items: center;
   gap: 3rem;
   max-width: var(--container);
@@ -301,7 +306,7 @@ main:focus {
 .hero__photo {
   justify-self: end;
   width: 100%;
-  max-width: 440px;
+  max-width: 520px;
   aspect-ratio: 1 / 1;
   border-radius: 22px;
   overflow: hidden;
